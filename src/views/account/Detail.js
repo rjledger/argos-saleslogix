@@ -145,6 +145,24 @@ Ext.namespace("Mobile.SalesLogix.Account");
                     },
                     as: [
                         {
+                            icon: 'content/images/icons/Company_24.png',
+                            label: 'ERP Accounts',
+                            where: this.formatRelatedQuery.createDelegate(
+                                this, ['$uuid eq "{0}"', '$uuid'], true
+                            ),
+                            view: 'gcrm_tradingaccount_related'
+                        },
+                        {
+                            icon: 'content/images/icons/journal_24.png',
+                            label: 'ERP Sales Invoices',
+                            resourceKind: 'tradingAccounts',
+                            resourceProperty: 'salesInvoices',
+                            resourcePredicate: this.formatRelatedQuery.createDelegate(
+                                this, ['$uuid eq "{0}"', '$uuid'], true
+                            ),
+                            view: 'gcrm_salesinvoice_related'
+                        },
+                        {
                             icon: 'content/images/icons/job_24.png',
                             label: this.relatedActivitiesText,
                             where: this.formatRelatedQuery.createDelegate(

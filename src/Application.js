@@ -329,6 +329,20 @@ Mobile.SalesLogix.Application = Ext.extend(Sage.Platform.Mobile.Application, {
         this.registerView(new Mobile.SalesLogix.Lead.Lookup({
             expose: false
         }));
+
+        this.registerView(new Mobile.GCRM.SalesInvoice.List());
+        this.registerView(new Mobile.GCRM.SalesInvoice.Detail());
+        this.registerView(new Mobile.GCRM.SalesInvoice.List({
+            id: 'gcrm_salesinvoice_related',
+            expose: false
+        }));
+
+        this.registerView(new Mobile.GCRM.TradingAccount.List());
+        this.registerView(new Mobile.GCRM.TradingAccount.Detail());
+        this.registerView(new Mobile.GCRM.TradingAccount.List({
+            id: 'gcrm_tradingaccount_related',
+            expose: false
+        }));
     },
     cleanRestoredHistory: function(restoredHistory) {
         var result = [],
