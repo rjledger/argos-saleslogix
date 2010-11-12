@@ -69,6 +69,7 @@ content/images/icons/Sort_Down_24.png
 content/images/icons/Sort_Up_24.png
 content/images/icons/srch_24.png
 content/images/icons/Whats_New_24.png
+content/images/icons/associate_24x24.gif
 content/images/toggle/thumb.png
 content/images/toggle/toggle.png
 content/images/toggle/toggleOn.png
@@ -78,10 +79,11 @@ content/reui/themes/sage-green/theme.css
 # application
 content/javascript/argos-dependencies.js
 content/javascript/argos-saleslogix.js
+content/javascript/argos-gcrm.js
 content/javascript/argos-sdk.js
 
 # environment
-environment/default.js
+environment/linked.js
 
 # shell
 index.html
@@ -91,3 +93,4 @@ help.html
 
 NETWORK:
 ../sdata/
+http://slxbrowser.sagesaleslogixcloud.com:8000/
