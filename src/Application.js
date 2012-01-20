@@ -29,9 +29,9 @@ define('Mobile/SalesLogix/Application', ['Sage/Platform/Mobile/Application'], fu
             'ActivityPersonalOptions;Duration'
         ],
         serverVersion: {
-            'major': 8,
-            'minor': 0,
-            'revision': 0
+            'major': 7,
+            'minor': 5,
+            'revision': 3
         },
         init: function() {
             if (dojo.isIE && dojo.isIE < 9) window.location.href = 'unsupported.html';
@@ -91,31 +91,12 @@ define('Mobile/SalesLogix/Application', ['Sage/Platform/Mobile/Application'], fu
         },
         onAuthenticateUserSuccess: function(credentials, callback, scope, result) {
             var user = {
-                '$key': dojo.trim(result['response']['userId']),
-                '$descriptor': result['response']['prettyName'],
-                'UserName': result['response']['userName']
+                '$key': dojo.trim(result['$key']),
+                '$descriptor': result['$descriptor'],
+                'UserName': result['UserName']
             };
 
             this.context['user' ] = user;
-            this.context['roles'] = result['response']['roles'];
-            this.context['securedActions'] = result['response']['securedActions'];
-
-            if (this.context['securedActions'])
-            {
-                dojo.forEach(this.context['securedActions'], function(item) {
-                    this[item] = true;
-                }, (this.context['userSecurity'] = {}));
-            }
-            else
-            {
-                // downgrade server version as only 8.0 has `securedActions` as part of the
-                // `getCurrentUser` response.
-                this.serverVersion = {
-                    'major': 7,
-                    'minor': 5,
-                    'revision': 4
-                };
-            }
             
             if (credentials.remember)
             {
@@ -149,14 +130,16 @@ define('Mobile/SalesLogix/Application', ['Sage/Platform/Mobile/Application'], fu
                 .setUserName(credentials.username)
                 .setPassword(credentials.password || '');
 
-            var request = new Sage.SData.Client.SDataServiceOperationRequest(service)
-                .setContractName('system')
-                .setOperationName('getCurrentUser');
+            var request = new Sage.SData.Client.SDataSingleResourceRequest(service);
+            // request.setResourceSelector();
+            request.setResourceKind('Users');
+            request.setQueryArg(Sage.SData.Client.SDataUri.QueryArgNames.Where, dojo.string.substitute("UserName eq '${0}'", [credentials.username]));
 
-            request.execute({}, {
-                success: dojo.hitch(this, this.onAuthenticateUserSuccess, credentials, options.success, options.scope), // this.onAuthenticateUserSuccess.createDelegate(this, [credentials, options.success, options.scope], true),
-                failure: dojo.hitch(this, this.onAuthenticateUserFailure, options.failure, options.scope), // this.onAuthenticateUserFailure.createDelegate(this, [options.failure, options.scope], true),
-                aborted: dojo.hitch(this, this.onAuthenticateUserFailure, options.failure, options.scope) // this.onAuthenticateUserFailure.createDelegate(this, [options.aborted, options.scope], true)
+            request.read({
+                success: dojo.hitch(this, this.onAuthenticateUserSuccess, credentials, options.success, options.scope),
+                failure: dojo.hitch(this, this.onAuthenticateUserFailure, options.failure, options.scope),
+                aborted: dojo.hitch(this, this.onAuthenticateUserFailure, options.failure, options.scope),
+                scope: this
             });
         },
         hasAccessTo: function(security) {
