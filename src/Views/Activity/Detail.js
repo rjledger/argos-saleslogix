@@ -69,6 +69,7 @@ define('Mobile/SalesLogix/Views/Activity/Detail', [
         id: 'activity_detail',
         completeView: 'activity_complete',
         editView: 'activity_edit',
+        editRecurringView: 'occurrence_select_list',
         security: null, //'Entities/Activity/View',
         contractName: 'system',
         querySelect: [
@@ -111,18 +112,17 @@ define('Mobile/SalesLogix/Views/Activity/Detail', [
             return this.activityTypeText[val] || val;
         },
         navigateToEditView: function(el) {
-            var view = App.getView(this.editView);
+            var view = App.getView( this.isActivityRecurringSeries(this.entry)
+                ? this.editRecurringView
+                : this.editView);
 
             if (view)
-            {
-                if (this.isActivityRecurringSeries(this.entry) && confirm(this.confirmEditRecurrenceText)) {
-                    this.recurrence.Leader = this.entry.Leader;
-                    view.show({entry: this.recurrence});
+                view.show({
+                    returnTo: this.id,
+                    entry: this.entry,
+                    recurrence: this.recurrence
+                });
 
-                } else {
-                    view.show({entry: this.entry});
-                }
-            }
         },
         navigateToCompleteView: function(completionTitle, isSeries) {
             var view = App.getView(this.completeView);

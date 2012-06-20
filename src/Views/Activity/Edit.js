@@ -622,7 +622,7 @@ define('Mobile/SalesLogix/Views/Activity/Edit', [
                 isLeadField.setValue(true);
                 this.onIsLeadChange(isLeadField.getValue(), isLeadField);
                 this.fields['Lead'].setValue(values, true);
-                this.fields['AccountName'].setValue(values['AccountName']);
+                this.fields['AccountName'].setValue(values['AccountName'], true);
             }
 
             var entry = this.options.entry || this.entry,
