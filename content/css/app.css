@@ -640,6 +640,7 @@ td.calendar-day {
 .tool-button[data-command="home"] > div { background-image: url(../images/icons/home_24.png); }
 .tool-button[data-command="edit"] > div { background-image: url(../images/icons/edit_24.png); }
 .tool-button[data-command="new"] > div { background-image: url(../images/icons/add_24.png); }
+.tool-button[data-command="up"] > div { background-image: url(../images/icons/Past_24.png); }
 .tool-button[data-command="save"] > div { background-image: url(../images/icons/save_24.png); }
 .tool-button[data-command="help"] > div { background-image: url(../images/icons/help_24.png); }
 .tool-button[data-command="cancel"] > div { background-image: url(../images/icons/cancl_24.png); }
