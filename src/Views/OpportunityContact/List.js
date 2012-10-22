@@ -116,14 +116,15 @@ define('Mobile/SalesLogix/Views/OpportunityContact/List', [
                 view.show(options);
         },
         createToolLayout: function() {
-            return this.inherited(arguments, [{
+            this.tools = this.tools || {
                 'top': [{
                     id: 'associate',
                     icon: 'content/images/icons/add_24.png',
                     action: 'navigateToSelectView',
                     security: App.getViewSecurity(this.insertView, 'insert')
                 }]
-            }]);
+            };
+            return this.inherited(arguments);
         },
         formatSearchQuery: function(searchQuery) {
             return string.substitute('(upper(Contact.NameLF) like "${0}%")', [this.escapeSearchQuery(searchQuery.toUpperCase())]);
