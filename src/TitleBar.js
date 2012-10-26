@@ -34,14 +34,14 @@ define('Mobile/SalesLogix/TitleBar', [
                 active = pane && pane.active;
             if (active && active.id != this.homeView)
             {
-                var numTiers = scene().layout.tiers;
-
-                if (1 < numTiers && pane.tier < (numTiers - 1) && false !== active.enableNavigateUp) {
-                    items = (items || []).concat([{
-                        name: 'up',
-                        place: 'left',
-                        fn: this.navigateUp
-                    }]);
+                if (pane.tier < (scene().layout.tiers - 1)) {
+                    if (false !== active.enableNavigateUp && true !== active.disableNavigateUp)
+                        items = (items || []).concat([{
+                            name: 'up',
+                            place: 'left',
+                            fn: this.navigateUp,
+                            args: [pane.tier]
+                        }]);
 
                 } else {
                     items = (items || []).concat([{
@@ -60,10 +60,10 @@ define('Mobile/SalesLogix/TitleBar', [
             this.inherited(arguments);
         },
         navigateToHomeView: function() {
-            scene().showView.call(scene(), this.homeView);
+            scene().showView.apply(scene(), [this.homeView]);
         },
-        navigateUp: function() {
-            scene().navigateUp.call(scene(), this.tier);
+        navigateUp: function(tier) {
+            scene().navigateUp.apply(scene(), [tier]);
         }
     });
 });
