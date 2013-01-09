@@ -157,53 +157,6 @@ define('Mobile/SalesLogix/Format', [
                 }
             );
         },
-        /*
-            {0}: original value
-            {1}: cleaned value
-            {2}: entire match (against clean value)
-            {3..n}: match groups (against clean value)
-        */
-        phoneFormat: [{
-            test: /^\+.*/,
-            format: '${0}'
-        },{
-            test: /^(\d{3})(\d{3,4})$/,
-            format: '${3}-${4}'
-        },{
-            test: /^(\d{3})(\d{3})(\d{2,4})$/, // 555 555 5555
-            format: '(${3})-${4}-${5}'
-        },{
-            test: /^(\d{3})(\d{3})(\d{2,4})([^0-9]{1,}.*)$/, // 555 555 5555x
-            format: '(${3})-${4}-${5}${6}'
-        },{
-            test: /^(\d{11,})(.*)$/,
-            format: '${1}'
-        }],
-        phone: function(val, withLink) {
-            if (typeof val !== 'string')
-                return val;
-
-            var formatters = Mobile.SalesLogix.Format.phoneFormat,
-                clean = /^\+/.test(val)
-                    ? val
-                    : val.replace(/[^0-9x]/ig, ''),
-                number;
-
-            for (var i = 0; i < formatters.length; i++)
-            {
-                var formatter = formatters[i],
-                    match;
-                if ((match = formatter.test.exec(clean)))
-                    number = string.substitute(formatter.format, [val, clean].concat(match));
-            }
-
-            if (number)
-                return withLink === false
-                    ? number
-                    : string.substitute('<a href="tel:${0}">${1}</a>', [clean, number]);
-
-            return val;
-        },
         currency: function(val) {
             if (isNaN(val) || val === null)
                 return val;
