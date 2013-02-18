@@ -14,6 +14,24 @@ define('Mobile/SalesLogix/Views/Account/List', [
 
     return declare('Mobile.SalesLogix.Views.Account.List', [List], {
         //Templates
+        widgetTemplate: new Simplate([
+            '<div id="{%= $.id %}" title="{%= $.titleText %}" class="list {%= $.cls %}" {% if ($.resourceKind) { %}data-resource-kind="{%= $.resourceKind %}"{% } %}>',
+            '<div data-dojo-attach-point="searchNode"></div>',
+            '<a href="#" class="android-6059-fix">fix for android issue #6059</a>',                
+            '{%! $.emptySelectionTemplate %}',
+            '<ul class="list-content row-fluid" data-dojo-attach-point="contentNode"></ul>',
+            '{%! $.moreTemplate %}',
+            '{%! $.listActionTemplate %}',
+            '</div>'
+        ]),
+        rowTemplate: new Simplate([
+            '<li class="span3" data-action="activateEntry" style="margin-left: 0px;" data-key="{%= $.$key %}" data-descriptor="{%: $.$descriptor %}">',
+                '<button data-action="selectEntry" class="list-item-selector button">',
+                    '<img src="{%= $$.icon || $$.selectIcon %}" class="icon" />',
+                '</button>',
+                '<div class="list-item-content">{%! $$.itemTemplate %}</div>',
+            '</li>'
+        ]),
         itemTemplate: new Simplate([
             '<h3>{%: $.AccountName %}</h3>',
             '<h4>{%: $.AccountManager && $.AccountManager.UserInfo ? $.AccountManager.UserInfo.UserName : "" %}</h4>'
