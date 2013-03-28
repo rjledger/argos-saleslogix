@@ -30,6 +30,28 @@
       ]
     },
     {
+      "name": "Fake Core Mobile Localization (en-US)",
+      "file": "localization/fa-ke.js",
+      "isDebug": true,
+      "fileIncludes": [
+        {
+          "text": "fa-ke.js",
+          "path": "../localization/"
+        }
+      ]
+    },
+    {
+      "name": "Fake SalesLogix Mobile Localization (fa-ke)",
+      "file": "localization/saleslogix/fa-ke.js",
+      "isDebug": true,
+      "fileIncludes": [
+        {
+          "text": "fa-ke.js",
+          "path": "../localization/saleslogix/"
+        }
+      ]
+    },
+    {
       "name": "Core Mobile Localization (de-DE)",
       "file": "localization/de.js",
       "isDebug": true,
