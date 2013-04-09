@@ -1,14 +1,26 @@
 define('localization/saleslogix/fa-ke', ['localization/fa-ke', 'Mobile/SalesLogix/ApplicationModule'], function() {
 
 localize("Sage.Platform.Mobile.Fields.DateField", {
-  "dateFormatText": "dd/MM/yyyy",
+  "dateFormatText": "__MM/dd/yyyy__",
   "emptyText": "",
   "invalidDateFormatErrorText": "__Field '${0}' has Invalid date format.__"
 });
 
+localize("Sage.Platform.Mobile.Format", {
+  "percentFormatText": "__${0}${1}__",
+  "yesText": "__Yes__",
+  "noText": "__No__",
+  "trueText": "__T__",
+  "falseText": "__F__",
+  "hoursText": "__hours__",
+  "hourText": "__hour__",
+  "minutesText": "__minutes__",
+  "minuteText": "__minute__"
+});
+
 localize("Mobile.SalesLogix.Views.Activity.Complete", {
-  "completedFormatText": "d/M/yyyy h:mm tt",
-  "startingFormatText": "d/M/yyyy h:mm tt",
+  "completedFormatText": "__M/d/yyyy h:mm tt__",
+  "startingFormatText": "__M/d/yyyy h:mm tt__",
   "activityInfoText": "__Activity Info__",
   "accountText": "__account__",
   "contactText": "__contact__",
@@ -57,9 +69,9 @@ localize("Mobile.SalesLogix.Views.Activity.Complete", {
 });
 
 localize("Mobile.SalesLogix.Views.Activity.Detail", {
-  "startDateFormatText": "d/M/yyyy h:mm:ss tt",
-  "timelessDateFormatText": "d/M/yyyy",
-  "alarmDateFormatText": "d/M/yyyy h:mm:ss tt",
+  "startDateFormatText": "__M/d/yyyy h:mm:ss tt__",
+  "timelessDateFormatText": "__M/d/yyyy__",
+  "alarmDateFormatText": "__M/d/yyyy h:mm:ss tt__",
   "activityTypeText": {
     "atToDo": "__To-Do__",
     "atPhoneCall": "__Phone Call__",
@@ -99,7 +111,7 @@ localize("Mobile.SalesLogix.Views.Activity.Detail", {
 });
 
 localize("Mobile.SalesLogix.Views.Activity.Edit", {
-  "startingFormatText": "d/M/yyyy h:mm tt",
+  "startingFormatText": "__M/d/yyyy h:mm tt__",
   "activityCategoryTitleText": "__Activity Category__",
   "activityDescriptionTitleText": "__Activity Description__",
   "locationText": "__location__",
@@ -156,15 +168,15 @@ localize("Mobile.SalesLogix.Views.Activity.Edit", {
 });
 
 localize("Mobile.SalesLogix.Views.Activity.List", {
-  "startDateFormatText": "ddd d/M/yy",
-  "startTimeFormatText": "h:mm",
+  "startDateFormatText": "__ddd M/d/yy__",
+  "startTimeFormatText": "__h:mm__",
   "allDayText": "__All-Day__",
   "titleText": "__Activities__"
 });
 
 localize("Mobile.SalesLogix.Views.Calendar.DayView", {
-  "dateHeaderFormatText": "dddd, dd/MM/yyyy",
-  "startTimeFormatText": "h:mm",
+  "dateHeaderFormatText": "__dddd, MM/dd/yyyy__",
+  "startTimeFormatText": "__h:mm__",
   "titleText": "__Calendar__",
   "todayText": "__Today__",
   "dayText": "__Day__",
@@ -178,9 +190,9 @@ localize("Mobile.SalesLogix.Views.Calendar.DayView", {
 });
 
 localize("Mobile.SalesLogix.Views.Calendar.MonthView", {
-  "monthTitleFormatText": "MMMM yyyy",
-  "dayTitleFormatText": "ddd d MMM, yyyy",
-  "startTimeFormatText": "h:mm",
+  "monthTitleFormatText": "__MMMM yyyy__",
+  "dayTitleFormatText": "__ddd MMM d, yyyy__",
+  "startTimeFormatText": "__h:mm__",
   "titleText": "__Calendar__",
   "todayText": "__Today__",
   "dayText": "__Day__",
@@ -195,10 +207,10 @@ localize("Mobile.SalesLogix.Views.Calendar.MonthView", {
 });
 
 localize("Mobile.SalesLogix.Views.Calendar.WeekView", {
-  "weekTitleFormatText": "d MMM, yyyy",
-  "dayHeaderLeftFormatText": "dddd",
-  "dayHeaderRightFormatText": "d MMM, yyyy",
-  "startTimeFormatText": "h:mm",
+  "weekTitleFormatText": "__MMM d, yyyy__",
+  "dayHeaderLeftFormatText": "__dddd__",
+  "dayHeaderRightFormatText": "__MMM d, yyyy__",
+  "startTimeFormatText": "__h:mm__",
   "titleText": "__Calendar__",
   "todayText": "__Today__",
   "dayText": "__Day__",
@@ -211,7 +223,7 @@ localize("Mobile.SalesLogix.Views.Calendar.WeekView", {
 });
 
 localize("Mobile.SalesLogix.Views.ErrorLog.Detail", {
-  "errorDateFormatText": "dd/MM/yyyy hh:mm tt",
+  "errorDateFormatText": "__MM/dd/yyyy hh:mm tt__",
   "titleText": "__Error Log__",
   "detailsText": "__Details__",
   "errorDateText": "__date__",
@@ -226,13 +238,13 @@ localize("Mobile.SalesLogix.Views.ErrorLog.Detail", {
 });
 
 localize("Mobile.SalesLogix.Views.ErrorLog.List", {
-  "errorDateFormatText": "dd/MM/yyyy hh:mm tt",
+  "errorDateFormatText": "__MM/dd/yyyy hh:mm tt__",
   "titleText": "__Error Logs__"
 });
 
 localize("Mobile.SalesLogix.Views.Event.Detail", {
-  "startDateFormatText": "d/M/yyyy h:mm:ss tt",
-  "endDateFormatText": "d/M/yyyy h:mm:ss tt",
+  "startDateFormatText": "__M/d/yyyy h:mm:ss tt__",
+  "endDateFormatText": "__M/d/yyyy h:mm:ss tt__",
   "eventTypeText": {
     "atToDo": "__To-Do__",
     "atPhoneCall": "__Phone Call__",
@@ -250,13 +262,13 @@ localize("Mobile.SalesLogix.Views.Event.Detail", {
 });
 
 localize("Mobile.SalesLogix.Views.Event.List", {
-  "eventDateFormatText": "d/M/yyyy",
+  "eventDateFormatText": "__M/d/yyyy__",
   "titleText": "__Events__",
   "eventText": "__Event__"
 });
 
 localize("Mobile.SalesLogix.Views.History.Detail", {
-  "dateFormatText": "d/M/yyyy h:mm:ss tt",
+  "dateFormatText": "__M/d/yyyy h:mm:ss tt__",
   "categoryText": "__category__",
   "completedText": "__completed__",
   "durationText": "__duration__",
@@ -291,7 +303,7 @@ localize("Mobile.SalesLogix.Views.History.Detail", {
 });
 
 localize("Mobile.SalesLogix.Views.History.Edit", {
-  "startingFormatText": "d/M/yyyy h:mm tt",
+  "startingFormatText": "__M/d/yyyy h:mm tt__",
   "accountText": "__account__",
   "noteDescriptionTitleText": "__Note Description__",
   "contactText": "__contact__",
@@ -311,8 +323,8 @@ localize("Mobile.SalesLogix.Views.History.Edit", {
 });
 
 localize("Mobile.SalesLogix.Views.History.List", {
-  "hourMinuteFormatText": "h:mm",
-  "dateFormatText": "d/M/yy",
+  "hourMinuteFormatText": "__h:mm__",
+  "dateFormatText": "__M/d/yy__",
   "activityTypeText": {
     "atToDo": "__To-Do__",
     "atPhoneCall": "__Phone Call__",
@@ -336,10 +348,11 @@ localize("Mobile.SalesLogix.Views.History.List", {
 });
 
 localize("Mobile.SalesLogix.Views.Opportunity.Detail", {
-  "exchangeRateDateFormatText": "d/M/yyyy h:mm tt",
+  "exchangeRateDateFormatText": "__M/d/yyyy h:mm tt__",
   "accountText": "__acct__",
   "acctMgrText": "__acct mgr__",
   "estCloseText": "__est close__",
+  "detailsText": "__Details__",
   "fbarHomeTitleText": "__home__",
   "fbarScheduleTitleText": "__schedule__",
   "importSourceText": "__lead source__",
@@ -365,18 +378,19 @@ localize("Mobile.SalesLogix.Views.Opportunity.Detail", {
   "addNoteText": "__Add note__",
   "moreDetailsText": "__More Details__",
   "multiCurrencyText": "__Multi Currency__",
-  "multiCurrencyRateText": "__rate__",
+  "multiCurrencyRateText": "__exchange rate__",
   "multiCurrencyCodeText": "__code__",
-  "multiCurrencyDateText": "__date__",
-  "multiCurrencyLockedText": "__locked__"
+  "multiCurrencyDateText": "__rate date__",
+  "multiCurrencyLockedText": "__rate locked__"
 });
 
 localize("Mobile.SalesLogix.Views.Opportunity.Edit", {
-  "exchangeRateDateFormatText": "d/M/yyyy h:mm tt",
+  "exchangeRateDateFormatText": "__M/d/yyyy h:mm tt__",
   "accountText": "__acct__",
   "acctMgrText": "__acct mgr__",
   "estCloseText": "__est close__",
   "importSourceText": "__lead source__",
+  "detailsText": "__Details__",
   "opportunityStatusTitleText": "__Opportunity Status__",
   "opportunityText": "__opportunity__",
   "opportunityTypeTitleText": "__Opportunity Type__",
@@ -387,11 +401,16 @@ localize("Mobile.SalesLogix.Views.Opportunity.Edit", {
   "resellerText": "__reseller__",
   "statusText": "__status__",
   "titleText": "__Opportunity__",
-  "typeText": "__type__"
+  "typeText": "__type__",
+  "multiCurrencyText": "__Multi Currency__",
+  "multiCurrencyRateText": "__exchange rate__",
+  "multiCurrencyCodeText": "__code__",
+  "multiCurrencyDateText": "__rate date__",
+  "multiCurrencyLockedText": "__rate locked__"
 });
 
 localize("Mobile.SalesLogix.Views.TicketActivity.Edit", {
-  "startingFormatText": "d/M/yyyy h:mm tt",
+  "startingFormatText": "__M/d/yyyy h:mm tt__",
   "titleText": "__Edit Ticket Activity__",
   "activityTypeText": "__type__",
   "activityTypeTitleText": "__Type__",
@@ -404,7 +423,7 @@ localize("Mobile.SalesLogix.Views.TicketActivity.Edit", {
 });
 
 localize("Mobile.SalesLogix.Views.TicketActivity.List", {
-  "startDateFormatText": "dd/MM/yyyy h:mmtt",
+  "startDateFormatText": "__MM/dd/yyyy h:mmtt__",
   "titleText": "__Ticket Activities__"
 });
 
@@ -478,17 +497,6 @@ localize("Sage.Platform.Mobile.Fields.NoteField", {
 localize("Sage.Platform.Mobile.Fields.SignatureField", {
   "signatureLabelText": "__signature__",
   "signatureText": "__...__"
-});
-
-localize("Sage.Platform.Mobile.Format", {
-  "yesText": "__Yes__",
-  "noText": "__No__",
-  "trueText": "__T__",
-  "falseText": "__F__",
-  "hoursText": "__hours__",
-  "hourText": "__hour__",
-  "minutesText": "__minutes__",
-  "minuteText": "__minute__"
 });
 
 localize("Sage.Platform.Mobile.GroupedList", {
@@ -1085,9 +1093,16 @@ localize("Mobile.SalesLogix.Views.OpportunityProduct.Detail", {
   "productFamilyText": "__product family__",
   "priceLevelText": "__price level__",
   "priceText": "__price__",
+  "basePriceText": "__base price__",
   "discountText": "__discount__",
   "quantityText": "__quantity__",
+  "baseExtendedPriceText": "__base__",
   "extendedPriceText": "__extended price__",
+  "extendedPriceSectionText": "__Extended Price__",
+  "adjustedPriceSectionText": "__Adjusted Price__",
+  "baseAdjustedPriceText": "__base__",
+  "adjustedPriceText": "__adjusted price__",
+  "myAdjustedPriceText": "__user__",
   "confirmDeleteText": "__Remove ${0} from the opportunity products?__",
   "removeOppProductTitleText": "__remove opportunity product__"
 });
@@ -1100,10 +1115,16 @@ localize("Mobile.SalesLogix.Views.OpportunityProduct.Edit", {
   "productFamilyText": "__product family__",
   "priceLevelText": "__price level__",
   "priceText": "__price__",
+  "basePriceText": "__base price__",
   "discountText": "__discount %__",
   "adjustedPriceText": "__adjusted price__",
+  "myAdjustedPriceText": "__user__",
+  "baseAdjustedPriceText": "__base__",
   "quantityText": "__quantity__",
-  "extendedPriceText": "__extended price__"
+  "baseExtendedPriceText": "__base__",
+  "extendedPriceText": "__extended price__",
+  "extendedPriceSectionText": "__Extended Price__",
+  "adjustedPriceSectionText": "__Adjusted Price__"
 });
 
 localize("Mobile.SalesLogix.Views.OpportunityProduct.List", {
