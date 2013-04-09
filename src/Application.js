@@ -37,7 +37,13 @@ define('Mobile/SalesLogix/Application', [
         rememberNavigationState: true,
         enableUpdateNotification: false,
         multiCurrency: false,
-
+        speedSearch: {
+            includeStemming: true,
+            includePhonic: true,
+            includeThesaurus: false,
+            useFrequentFilter: false,
+            searchType: 1
+        },
         enableCaching: true,
         userDetailsQuerySelect: ['UserName','UserInfo/UserName','UserInfo/FirstName','UserInfo/LastName','DefaultOwner/OwnerDescription'],
         userOptionsToRequest: [
@@ -548,14 +554,14 @@ define('Mobile/SalesLogix/Application', [
         },
         getDefaultViews: function() {
             return [
+                'myactivity_list',
+                'calendar_daylist',
+                'history_list',
                 'account_list',
                 'contact_list',
                 'lead_list',
                 'opportunity_list',
-                'ticket_list',
-                'calendar_daylist',
-                'history_list',
-                'myactivity_list'
+                'ticket_list'
             ];
         },
         getExposedViews: function() {
