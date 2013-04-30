@@ -4,7 +4,7 @@ define('Mobile/SalesLogix/SpeedSearchWidget', [
     'dojo/_base/event',
     'dojo/dom-class',
     'dijit/_Widget',
-    'Sage/Platform/Mobile/_Templated'
+    'argos/_Templated'
 ], function(
     declare,
     lang,

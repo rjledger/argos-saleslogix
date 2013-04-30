@@ -85,8 +85,8 @@ define('Mobile/SalesLogix/Application', [
             'revision': 0
         },
         mobileVersion: {
-            'major': 2,
-            'minor': 2,
+            'major': 3,
+            'minor': 0,
             'revision': 0
         },
         /* todo: move to startup */
@@ -283,7 +283,7 @@ define('Mobile/SalesLogix/Application', [
         },
         onAuthenticateUserFailure: function(callback, scope, response, ajax) {
             var service = this.getConnection();
-            if (service)
+            if (service) {
                 service
                     .setUserName(false)
                     .setPassword(false);
@@ -337,7 +337,7 @@ define('Mobile/SalesLogix/Application', [
             }
 
             var service = this.getConnection();
-            if (service)
+            if (service) {
                 service
                     .setUserName(false)
                     .setPassword(false);
@@ -469,7 +469,7 @@ define('Mobile/SalesLogix/Application', [
             ErrorManager.addError(this.requestErrorText, errorItem);
         },
         requestSystemOptions: function() {
-            var request = new Sage.SData.Client.SDataResourceCollectionRequest(this.getService())
+            var request = new Sage.SData.Client.SDataResourceCollectionRequest(this.getConnection())
                 .setContractName('system')
                 .setResourceKind('systemoptions')
                 .setQueryArg('select', 'name,value');
@@ -505,7 +505,7 @@ define('Mobile/SalesLogix/Application', [
             ErrorManager.addError(response, o, {}, 'failure');
         },
         requestExchangeRates: function() {
-            var request = new Sage.SData.Client.SDataResourceCollectionRequest(this.getService())
+            var request = new Sage.SData.Client.SDataResourceCollectionRequest(this.getConnection())
                 .setContractName('dynamic')
                 .setResourceKind('exchangeRates')
                 .setQueryArg('select', 'Rate');

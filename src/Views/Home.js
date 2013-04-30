@@ -13,7 +13,7 @@ define('Mobile/SalesLogix/Views/Home', [
     'argos/GroupedList',
     'argos!application',
     'argos!scene',
-    'argos!customizations'
+    'argos!customizations',
     'Mobile/SalesLogix/SpeedSearchWidget'
 ], function(
     declare,
@@ -24,7 +24,7 @@ define('Mobile/SalesLogix/Views/Home', [
     GroupedList,
     app,
     scene,
-    customizations
+    customizations,
     SpeedSearchWidget
 ) {
     return declare('Mobile.SalesLogix.Views.Home', [GroupedList], {
@@ -84,7 +84,7 @@ define('Mobile/SalesLogix/Views/Home', [
             };
         },
         getGroupForItem: function(item) {
-            if (item.action == 'navigateToView')
+            if (item.action == 'navigateToView') {
                 return {
                     tag: 'view',
                     title: this.viewsText
@@ -161,7 +161,8 @@ define('Mobile/SalesLogix/Views/Home', [
                     'action': 'navigateToView',
                     'icon': 'content/images/icons/Calendar_24x24.png',
                     'title': this.calendarText,
-                    'security': null
+                    'security': null,
+                    'defult': true
                 },{
                     'name': 'history_list',
                     'view': 'history_list',

@@ -1,7 +1,7 @@
 define('Mobile/SalesLogix/ApplicationViews', {
     'home': {type: 'Mobile/SalesLogix/Views/Home'},
     'login': {type: 'Mobile/SalesLogix/Views/Login'},
-    // 'configure': {type: 'Mobile/SalesLogix/Views/Configure'},
+    'configure': {type: 'Mobile/SalesLogix/Views/Configure'},
 
     'datetimepicker': {type: 'argos/Views/DateTimePicker', props: {tier: 1}},
     'calendar': {type: 'argos/Views/Calendar'},
@@ -14,6 +14,7 @@ define('Mobile/SalesLogix/ApplicationViews', {
     'address_edit': {type: 'Mobile/SalesLogix/Views/Address/Edit'},
     'address_related': {type: 'Mobile/SalesLogix/Views/Address/List', props: {tier: 1}},
     'activity_list': {type: 'Mobile/SalesLogix/Views/Activity/List', security: 'Entities/Activity/View'},
+    'myactivity_list': {type: 'Mobile/SalesLogix/Views/Activity/MyList'},
     'activity_related': {type: 'Mobile/SalesLogix/Views/Activity/List'},
     'activity_detail': {type: 'Mobile/SalesLogix/Views/Activity/Detail'},
     'activity_edit': {type: 'Mobile/SalesLogix/Views/Activity/Edit'},
@@ -49,6 +50,8 @@ define('Mobile/SalesLogix/ApplicationViews', {
     'opportunitycontact_list': {type: 'Mobile/SalesLogix/Views/OpportunityContact/List'},
     'opportunitycontact_related': {type: 'Mobile/SalesLogix/Views/OpportunityContact/List'},
     'opportunityproduct_related': {type: 'Mobile/SalesLogix/Views/OpportunityProduct/List', props: {tier: 1}},
+    'opportunityproduct_detail': {type: 'Mobile/SalesLogix/Views/OpportunityProduct/Detail'},
+    'opportunityproduct_edit': {type: 'Mobile/SalesLogix/Views/OpportunityProduct/Edit'},
     'ticket_list': {type: 'Mobile/SalesLogix/Views/Ticket/List'},
     'ticket_related': {type: 'Mobile/SalesLogix/Views/Ticket/List'},
     'ticket_detail': {type: 'Mobile/SalesLogix/Views/Ticket/Detail'},
@@ -68,10 +71,13 @@ define('Mobile/SalesLogix/ApplicationViews', {
     'history_detail': {type: 'Mobile/SalesLogix/Views/History/Detail'},
     'history_edit': {type: 'Mobile/SalesLogix/Views/History/Edit'},
     'areacategoryissue_lookup': {type: 'Mobile/SalesLogix/Views/AreaCategoryIssueLookup', props: {tier: 1}},
+    'exchangerate_lookup': {type: 'Mobile/SalesLogix/Views/ExchangeRateLookup', props: {tier: 1}},
     'owner_list': {type: 'Mobile/SalesLogix/Views/Owner/List', props: {tier: 1}},
     'urgency_list': {type: 'Mobile/SalesLogix/Views/Ticket/UrgencyLookup', props: {tier: 1}},
     'user_list': {type: 'Mobile/SalesLogix/Views/User/List', props: {tier: 1}},
-    'competitor_related': {type: 'Mobile/SalesLogix/Views/Competitor/List', props: {tier: 1}}
+    'competitor_related': {type: 'Mobile/SalesLogix/Views/Competitor/List', props: {tier: 1}},
+    'product_related': {type: 'Mobile/SalesLogix/Views/Product/List', props: {tier: 1}},
+    'productprogram_related': {type: 'Mobile/SalesLogix/Views/ProductProgram/List', props: {tier: 1}}
 });
 
 /*

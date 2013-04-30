@@ -501,7 +501,7 @@ define('Mobile/SalesLogix/Views/Calendar/WeekView', [
             this.requestEventData();
         },
         activate: function(options) {
-            if (options)
+            if (options) {
                 this.processShowOptions(options);
             }
 

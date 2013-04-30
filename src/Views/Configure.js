@@ -18,6 +18,7 @@ define('Mobile/SalesLogix/Views/Configure', [
     domAttr,
     domClass,
     List,
+    NodeTraverse,
     scene
 ) {
 
