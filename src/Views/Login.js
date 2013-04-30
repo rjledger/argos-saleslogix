@@ -33,6 +33,9 @@ define('Mobile/SalesLogix/Views/Login', [
                     {name: 'action', attachPoint: 'toolbars.action', type: ActionBar, props: {managed: true}},
                     {name: 'copyright', tag: 'div', attrs: {'class': 'copyright'}, components:[
                         {name: 'copyrightText', content: Simplate.make('<span>{%= $.copyrightText %}</span>')}
+                    ]},
+                    {name: 'versionInfo', tag: 'div', attrs: {'class': 'copyright'}, components:[
+                        {name: 'versionInfoText', content: Simplate.make('<span>{%= App.getVersionInfo() %}</span>')}
                     ]}
                 ]}
             ]}
@@ -41,9 +44,7 @@ define('Mobile/SalesLogix/Views/Login', [
         id: 'login',
         tier: 0,
         busy: false,
-
-        //Localization
-        copyrightText: '&copy; 2012 Sage Software, Inc. All rights reserved.',
+        copyrightText: '&copy; 2013 Sage Software, Inc. All rights reserved.',
         logOnText: 'Log On',
         passText: 'password',
         rememberText: 'remember',
@@ -85,16 +86,19 @@ define('Mobile/SalesLogix/Views/Login', [
                 }
             ]);
         },
-        authenticate: function () {
-            if (this.busy) return;
+        authenticate: function() {
+            if (this.busy) {
+                return;
+            }
 
             var credentials = this.getValues(),
                 username = credentials && credentials.username;
 
-            if (username && /\w+/.test(username))
+            if (username && /\w+/.test(username)) {
                 this.validateCredentials(credentials);
+            }
         },
-        validateCredentials: function (credentials) {
+        validateCredentials: function(credentials) {
             this.disable();
 
             application().authenticateUser(credentials, {
@@ -108,15 +112,13 @@ define('Mobile/SalesLogix/Views/Login', [
                 failure: function(result) {
                     this.enable();
 
-                    if (result.response)
-                    {
-                        if (result.response.status == 403)
+                    if (result.response) {
+                        if (result.response.status == 403) {
                             alert(this.invalidUserText);
-                        else
+                        } else {
                             alert(this.serverProblemText);
-                    }
-                    else
-                    {
+                        }
+                    } else {
                         alert(this.missingUserText);
                     }
                 },
@@ -130,3 +132,4 @@ define('Mobile/SalesLogix/Views/Login', [
         }
     });
 });
+

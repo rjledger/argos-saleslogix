@@ -6,7 +6,10 @@
 <%@ Import Namespace="System.Web.Script.Serialization" %>
 
 <!DOCTYPE html>
-<html>
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="gtie9 modern">
+<!--<![endif]-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
@@ -51,6 +54,9 @@
 
     <!-- Simplate -->
     <script type="text/javascript" src="../../argos-sdk/libraries/Simplate.js"></script>
+
+    <!-- canvas2image for when HTMLCanvasElement.prototype.toDataURL isn't available -->
+    <script type="text/javascript" src="../../argos-sdk/libraries/canvas2image.js"></script>
 
     <!-- Dojo -->
     <script type="text/javascript" src="../../argos-sdk/libraries/dojo/dojo/dojo.js" data-dojo-config="parseOnLoad:false, async:true, blankGif:'content/images/blank.gif'"></script>

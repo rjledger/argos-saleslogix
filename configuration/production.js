@@ -3,7 +3,6 @@ define('configuration/production', ['Mobile/SalesLogix/ApplicationModule'], func
         modules: [
             new ApplicationModule()
         ],
-        /*
         connections: {
             'crm': {
                 isDefault: true,
@@ -16,16 +15,8 @@ define('configuration/production', ['Mobile/SalesLogix/ApplicationModule'], func
                 protocol: /https/i.test(window.location.protocol) ? 'https' : false,
                 json: true
             }
-        }*/
-        connections: {
-            'crm': {
-                isDefault: true,
-                offline: true,
-                url: 'http://50.16.242.109/sdata/slx/dynamic/-/',
-                json: true,
-                userName: 'lee',
-                password: ''
-            }
-        }
+        },
+        enableUpdateNotification: true,
+        multiCurrency: false
     };
 });

@@ -79,10 +79,11 @@ define('Mobile/SalesLogix/Views/Activity/TypesList', [
             }
         },
         refreshRequiredFor: function(options) {
-            if (this.options)
+            if (this.options) {
                 return options;
-            else
+            } else {
                 return true;
+            }
         },
         _requestData: function() {
             var list = [],
@@ -93,16 +94,14 @@ define('Mobile/SalesLogix/Views/Activity/TypesList', [
                     'calendar_yearlist'
                 ];
 
-            for (var i = 0; i < this.activityTypeOrder.length; i++)
-            {
+            for (var i = 0; i < this.activityTypeOrder.length; i++) {
                 list.push({
                     '$key': this.activityTypeOrder[i],
                     '$descriptor': this.activityTypeText[this.activityTypeOrder[i]],
-                    'icon':this.activityTypeIcons[this.activityTypeOrder[i]]
+                    'icon': this.activityTypeIcons[this.activityTypeOrder[i]]
                 });
             }
-            if (eventViews.indexOf(this.options.returnTo) === -1)
-            {
+            if (eventViews.indexOf(this.options.returnTo) === -1) {
                 list.pop(); // remove event for non event views
             }
 
@@ -137,3 +136,4 @@ define('Mobile/SalesLogix/Views/Activity/TypesList', [
         }
     });
 });
+

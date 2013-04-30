@@ -77,8 +77,7 @@ define('Mobile/SalesLogix/Views/ErrorLog/Detail', [
                 });
             }
 
-            if (this.sendType === 'copy')
-            {
+            if (this.sendType === 'copy') {
                 var flashVars = this.constructFlashVars({
                     "retrieveFunction": "scene().getView('"+this.id+"').constructReport",
                     "callbackFunction": "scene().getView('"+this.id+"').onCopySuccess",
@@ -103,19 +102,20 @@ define('Mobile/SalesLogix/Views/ErrorLog/Detail', [
          * 'copy': Used on desktops to indicate a "copy" button should be placed on the page
          */
         determineSendType: function() {
-            switch(true){
+            switch (true) {
                 case (typeof window.orientation !== 'undefined'):
                     this.sendType = 'mailto';
                     break;
-
-                default: this.sendType = 'copy';
+                default:
+                    this.sendType = 'copy';
             }
         },
 
         constructFlashVars: function(options) {
             var flashVars = [];
-            for (var key in options)
+            for (var key in options) {
                 flashVars.push(string.substitute('${0}=${1}', [key, options[key]]));
+            }
 
             return flashVars.join('&');
         },
@@ -128,10 +128,11 @@ define('Mobile/SalesLogix/Views/ErrorLog/Detail', [
             var body = string.substitute('\r\n\r\n\r\n-----------------\r\n${0}',
                     [json.toJson(utility.sanitizeForJson(this.item), true)]);
 
-            if (this.sendType === 'mailto')
+            if (this.sendType === 'mailto') {
                 this.sendEmailReport(body);
-            else
+            } else {
                 return body;
+            }
         },
 
         sendEmailReport: function(body) {
@@ -175,3 +176,4 @@ define('Mobile/SalesLogix/Views/ErrorLog/Detail', [
         }
     });
 });
+

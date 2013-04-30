@@ -11,22 +11,17 @@ define('Mobile/SalesLogix/Views/MainToolbar', [
         showTools: function(tools) {
             var hasLeftSideTools;
 
-            if (tools)
-            {
-                for (var i = 0; i < tools.length; i++)
-                {
-                    if (tools[i].side == 'left')
-                    {
+            if (tools) {
+                for (var i = 0; i < tools.length; i++) {
+                    if (tools[i].side == 'left') {
                         hasLeftSideTools = true;
                         break;
                     }
                 }
             }
 
-            if (!hasLeftSideTools && tools !== false)
-            {
-                if (App.getPrimaryActiveView() != App.getView('home'))
-                {
+            if (!hasLeftSideTools && tools !== false) {
+                if (App.getPrimaryActiveView() != App.getView('home')) {
                     tools = (tools || []).concat([{
                         id: 'back',
                         place: 'left',
@@ -51,3 +46,4 @@ define('Mobile/SalesLogix/Views/MainToolbar', [
         }
     });
 });
+

@@ -104,11 +104,11 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
         activityRowTemplate: new Simplate([
             '<li data-action="activateEntry" data-key="{%= $.$key %}" data-descriptor="{%: $.$descriptor %}" data-activity-type="{%: $.Type %}">',
             '<table class="calendar-entry-table"><tr>',
-                '<td class="entry-table-icon">',
-                '<button data-action="selectEntry" class="list-item-selector button"><img src="{%= $$.activityIconByType[$.Type] || $$.selectIcon %}" class="icon" /></button>',
-                '</td>',
-                '<td class="entry-table-time">{%! $$.activityTimeTemplate %}</td>',
-                '<td class="entry-table-description">{%! $$.activityItemTemplate %}</td>',
+            '<td class="entry-table-icon">',
+            '<button data-action="selectEntry" class="list-item-selector button"><img src="{%= $$.activityIconByType[$.Type] || $$.selectIcon %}" class="icon" /></button>',
+            '</td>',
+            '<td class="entry-table-time">{%! $$.activityTimeTemplate %}</td>',
+            '<td class="entry-table-description">{%! $$.activityItemTemplate %}</td>',
             '</tr></table>',
             '</li>'
         ]),
@@ -124,7 +124,7 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
         ]),
         activityTimeTemplate: new Simplate([
             '{% if ($.Timeless) { %}',
-                '<span class="p-time">{%= $$.allDayText %}</span>',
+            '<span class="p-time">{%= $$.allDayText %}</span>',
             '{% } else { %}',
                 '<span class="p-time">{%: Mobile.SalesLogix.Format.date($.StartDate, $$.startTimeFormatText) %}</span>',
                 '<span class="p-meridiem">{%: Mobile.SalesLogix.Format.date($.StartDate, "A") %}</span>',
@@ -219,9 +219,9 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
             'Timeless',
             'Type'
         ],
-        feed: {},
-        eventFeed: {},
-        entries: {},
+        feed: null,
+        eventFeed: null,
+        entries: null,
         selectedDateRequests: null,
         selectedDateEventRequests: null,
         monthRequests: null,
@@ -264,12 +264,16 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
 
         resourceKind: 'activities',
 
+        constructor: function() {
+            this.feed = {};
+            this.eventFeed = {};
+            this.entries = {};
+        },
         _onRefresh: function(o) {
-           this.inherited(arguments);
-           if (o.resourceKind === 'activities' || o.resourceKind === 'events')
-           {
+            this.inherited(arguments);
+            if (o.resourceKind === 'activities' || o.resourceKind === 'events') {
                 this.refreshRequired = true;
-           }
+            }
         },
         onStartup: function() {
             this.inherited(arguments);
@@ -317,9 +321,7 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
                 this.currentDate = today;
                 this.highlightCurrentDate();
                 this.getSelectedDate();
-            }
-            else
-            {
+            } else {
                 this.currentDate = today;
                 this.refresh();
             }
@@ -455,11 +457,18 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
             }
         },
         processEventFeed: function(feed) {
-            if (!feed) return;
+            if (!feed) {
+                return;
+            }
 
             var dateIndex,
                 r = feed['$resources'],
-                feedLength = r.length;
+                feedLength = r.length,
+                i,
+                row,
+                startDay,
+                endDay;
+
             this.eventFeed = feed;
 
             for (var i = 0; i < feedLength; i ++)
@@ -483,9 +492,11 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
         },
 
         highlightActivities: function() {
-            query('.calendar-day').forEach( function(node) {
+            query('.calendar-day').forEach(function(node) {
                 var dataDate = domAttr.get(node, 'data-date');
-                if (!this.dateCounts[dataDate]) return;
+                if (!this.dateCounts[dataDate]) {
+                    return;
+                }
 
                 domClass.add(node, "activeDay");
 
@@ -493,13 +504,10 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
 
                 var existingCount = query(node).children('div');
 
-                if (existingCount.length > 0)
-                {
+                if (existingCount.length > 0) {
                     domConstruct.place(countMarkup, existingCount[0], 'only');
-                }
-                else
-                {
-                    domConstruct.place('<div>'+countMarkup+'</div>', node, 'first');
+                } else {
+                    domConstruct.place('<div>' + countMarkup + '</div>', node, 'first');
                 }
             }, this);
         },
@@ -524,10 +532,14 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
             this.hideEventList();
         },
         cancelRequests: function(requests) {
-            if (!requests) return;
-            array.forEach(requests, function(xhr){
+            if (!requests) {
+                return;
+            }
+            array.forEach(requests, function(xhr) {
                 if (xhr) // if request was fulfilled by offline storage, xhr will be undefined
+                {
                     xhr.abort();
+                }
             });
         },
         requestSelectedDateActivities: function() {
@@ -542,11 +554,11 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
                 queryWhere: this.getSelectedDateActivityQuery()
             });
             var xhr = request.read({
-                    success: this.onRequestSelectedDateActivityDataSuccess,
-                    failure: this.onRequestDataFailure,
-                    aborted: this.onRequestDataAborted,
-                    scope: this
-                });
+                success: this.onRequestSelectedDateActivityDataSuccess,
+                failure: this.onRequestDataFailure,
+                aborted: this.onRequestDataAborted,
+                scope: this
+            });
             this.selectedDateRequests.push(xhr);
         },
         requestSelectedDateEvents: function() {
@@ -561,11 +573,11 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
                 queryWhere: this.getSelectedDateEventQuery()
             });
             var xhr = request.read({
-                    success: this.onRequestSelectedDateEventDataSuccess,
-                    failure: this.onRequestDataFailure,
-                    aborted: this.onRequestDataAborted,
-                    scope: this
-                });
+                success: this.onRequestSelectedDateEventDataSuccess,
+                failure: this.onRequestDataFailure,
+                aborted: this.onRequestDataAborted,
+                scope: this
+            });
             this.selectedDateEventRequests.push(xhr);
         },
         createSelectedDateRequest: function(o){
@@ -611,7 +623,9 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
                 );
         },
         onRequestSelectedDateActivityDataSuccess: function(feed) {
-            if (!feed) return;
+            if (!feed) {
+                return;
+            }
 
             domClass.remove(this.activityContainerNode, 'list-loading');
 
@@ -619,27 +633,22 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
                 feedLength = r.length,
                 o = [];
 
-            for (var i = 0; i < feedLength; i++)
-            {
+            for (var i = 0; i < feedLength; i++) {
                 var row = r[i];
                 row.isEvent = false;
                 this.items[row.$key] = row;
                 o.push(this.activityRowTemplate.apply(row, this));
             }
 
-            if (feedLength === 0)
-            {
+            if (feedLength === 0) {
                 this.set('activityContent', this.noDataTemplate.apply(this));
                 return false;
             }
 
-            if (feed['$totalResults'] > feedLength)
-            {
+            if (feed['$totalResults'] > feedLength) {
                 domClass.add(this.activityContainerNode, 'list-has-more');
                 this.set('activityRemainingContent', string.substitute(this.countMoreText, [feed['$totalResults'] - feedLength]));
-            }
-            else
-            {
+            } else {
                 domClass.remove(this.activityContainerNode, 'list-has-more');
                 this.set('activityRemainingContent', '');
             }
@@ -647,39 +656,33 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
             this.set('activityContent', o.join(''));
         },
         onRequestSelectedDateEventDataSuccess: function(feed) {
-            if (!feed) return;
+            if (!feed) {
+                return;
+            }
 
             var r = feed['$resources'],
                 feedLength = r.length,
                 o = [];
             this.eventFeed = feed;
 
-            if (feedLength === 0)
-            {
+            if (feedLength === 0) {
                 this.hideEventList();
                 return false;
-            }
-            else
-            {
+            } else {
                 this.showEventList();
             }
 
-            for (var i = 0; i < feedLength; i++)
-            {
+            for (var i = 0; i < feedLength; i++) {
                 var row = r[i];
                 row.isEvent = true;
                 this.items[row.$key] = row;
                 o.push(this.eventRowTemplate.apply(row, this));
             }
 
-
-            if (feed['$totalResults'] > feedLength)
-            {
+            if (feed['$totalResults'] > feedLength) {
                 domClass.add(this.eventContainerNode, 'list-has-more');
                 this.set('eventRemainingContent', string.substitute(this.countMoreText, [feed['$totalResults'] - feedLength]));
-            }
-            else
-            {
+            } else {
                 domClass.remove(this.eventContainerNode, 'list-has-more');
                 this.set('eventRemainingContent', '');
             }
@@ -708,8 +711,7 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
             calHTML.push(this.calendarWeekHeaderEndTemplate);
 
             //Weeks
-            for (var i = 0; i <= 6; i++)
-            {
+            for (var i = 0; i <= 6; i++) {
                 calHTML.push(this.calendarWeekStartTemplate);
                 //Days
                 for (var j = 0; j <= 6; j++)
@@ -735,7 +737,9 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
                 }
                 calHTML.push(this.calendarWeekEndTemplate);
                 // stop making rows if we've run out of days
-                if (day > monthLength) break;
+                if (day > monthLength) {
+                    break;
+                }
             }
             calHTML.push(this.calendarEndTemplate);
 
@@ -749,12 +753,9 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
         activate: function(options) {
             this.inherited(arguments);
 
-            if (options)
-            {
+            if (options) {
                 this.processShowOptions(options);
-            }
-            else
-            {
+            } else {
                 this.renderCalendar();
             }
         },
@@ -768,8 +769,9 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
         highlightCurrentDate: function() {
             var selectedDate = string.substitute('.calendar-day[data-date=${0}]', [this.currentDate.format('YYYY-MM-DD')]);
 
-            if (this.selectedDateNode)
+            if (this.selectedDateNode) {
                 domClass.remove(this.selectedDateNode, 'selected');
+            }
 
             this.selectedDateNode = query(selectedDate, this.contentNode)[0];
             domClass.add(this.selectedDateNode, 'selected');
@@ -834,6 +836,6 @@ define('Mobile/SalesLogix/Views/Calendar/MonthView', [
                 key: key
             });
         }
-
     });
 });
+

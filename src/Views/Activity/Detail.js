@@ -5,6 +5,7 @@ define('Mobile/SalesLogix/Views/Activity/Detail', [
     'dojo/dom-class',
     'Mobile/SalesLogix/Template',
     'Mobile/SalesLogix/Format',
+    'Mobile/SalesLogix/Environment',
     'argos/convert',
     'argos/Detail',
     'Mobile/SalesLogix/Recurrence',
@@ -17,6 +18,7 @@ define('Mobile/SalesLogix/Views/Activity/Detail', [
     domClass,
     template,
     format,
+    environment,
     convert,
     Detail,
     recur,
@@ -120,7 +122,6 @@ define('Mobile/SalesLogix/Views/Activity/Detail', [
                 scene().showView( this.editView, {
                     item: this.recurrence
                 });
-
             } else {
                 scene().showView( this.editView, {
                     item: this.item
@@ -128,18 +129,27 @@ define('Mobile/SalesLogix/Views/Activity/Detail', [
             }
         },
         navigateToCompleteView: function(completionTitle, isSeries) {
-            this.refreshRequired = true;
+            var view, options;
 
-            var options = {
-                title: completionTitle,
-                template: {}
-            };
+            view = App.getView(this.completeView);
 
-            if (isSeries){
-                this.recurrence.Leader = this.item.Leader;
-                options.item = this.recurrence;
-            } else {
-                options.item = this.item;
+            if (view) {
+                environment.refreshActivityLists();
+                options = {
+                    title: completionTitle,
+                    template: {}
+                };
+
+                if (isSeries) {
+                    this.recurrence.Leader = this.entry.Leader;
+                    options.entry = this.recurrence;
+                } else {
+                    options.entry = this.entry;
+                }
+
+                view.show(options, {
+                    returnTo: -1
+                });
             }
 
             scene().showView( this.completeView, options, {
@@ -150,7 +160,31 @@ define('Mobile/SalesLogix/Views/Activity/Detail', [
             this.navigateToCompleteView(this.completeActivityText);
         },
         completeOccurrence: function() {
-            this.navigateToCompleteView(this.completeOccurrenceText);
+            var request, key, entry = this.entry;
+            key = entry['$key'];
+
+            // Check to ensure we have a composite key (meaning we have the occurance, not the master)
+            if (this.isActivityRecurring(entry) && key.split(this.recurringActivityIdSeparator).length !== 2) {
+                // Fetch the occurance, and continue on to the complete screen
+                request = new Sage.SData.Client.SDataResourceCollectionRequest(this.getService())
+                    .setResourceKind('activities')
+                    .setContractName('system')
+                    .setQueryArg('where', "id eq '" + key + "'")
+                    .setCount(1);
+
+                request.read({
+                    success: this.processOccurance,
+                    scope: this
+                });
+            } else {
+                this.navigateToCompleteView(this.completeOccurrenceText);
+            }
+        },
+        processOccurance: function(feed) {
+            if (feed && feed.$resources && feed.$resources.length > 0) {
+                this.entry = feed.$resources[0];
+                this.navigateToCompleteView(this.completeOccurrenceText);
+            }
         },
         completeSeries: function() {
             this.navigateToCompleteView(this.completeSeriesText, true);
@@ -191,18 +225,19 @@ define('Mobile/SalesLogix/Views/Activity/Detail', [
         requestLeaderFailure: function(xhr, o) {
         },
         processLeader: function(leader) {
-            if (leader)
-            {
-                this.item['Leader'] = leader;
+            if (leader) {
+                this.entry['Leader'] = leader;
 
                 var rowNode = query('[data-property="Leader"]'),
                     contentNode = rowNode && query('[data-property="Leader"] > span', this.domNode);
 
-                if (rowNode)
+                if (rowNode) {
                     domClass.remove(rowNode[0], 'content-loading');
+                }
 
-                if (contentNode)
+                if (contentNode) {
                     contentNode[0].innerHTML = this.leaderTemplate.apply(leader['UserInfo']);
+                }
             }
         },
         requestRecurrence: function(entry) {
@@ -224,20 +259,27 @@ define('Mobile/SalesLogix/Views/Activity/Detail', [
             }
         },
         processRecurrence: function(recurrence) {
-            if (recurrence)
-            {
+            var rowNode, contentNode;
+
+            if (recurrence) {
                 this.recurrence = recurrence;
 
-                var rowNode = query('[data-property="RecurrenceUI"]'),
-                    contentNode = rowNode && query('[data-property="RecurrenceUI"] > span', this.domNode);
-                if (rowNode) { domClass.remove(rowNode[0], 'content-loading'); }
-                if (contentNode) { contentNode[0].innerHTML = recur.toString(this.recurrence); }
+                rowNode = query('[data-property="RecurrenceUI"]');
+                contentNode = rowNode && query('[data-property="RecurrenceUI"] > span', this.domNode);
+
+                if (rowNode) {
+                    domClass.remove(rowNode[0], 'content-loading');
+                }
+
+                if (contentNode) {
+                    contentNode[0].innerHTML = recur.toString(this.recurrence);
+                }
             }
         },
         requestRecurrenceFailure: function(xhr, o) {
         },
         checkCanComplete: function(entry) {
-            return !entry || (entry['Leader']['$key'] !== App.context['user']['$key'])
+            return !entry || (entry['Leader']['$key'] !== App.context['user']['$key']);
         },
         createLayout: function() {
             return this.layout || (this.layout = [{

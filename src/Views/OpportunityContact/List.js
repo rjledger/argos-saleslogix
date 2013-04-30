@@ -17,9 +17,9 @@ define('Mobile/SalesLogix/Views/OpportunityContact/List', [
         itemTemplate: new Simplate([
             '<h3 class="{% if ($.IsPrimary) { %} primary {% } %}">{%: $.Contact.NameLF %}</h3>',
             '<h4 class="{% if ($.IsPrimary) { %} primary {% } %}">',
-                '{% if ($.SalesRole) { %}',
-                    '{%: $.SalesRole %} | ',
-                '{% } %}',
+            '{% if ($.SalesRole) { %}',
+            '{%: $.SalesRole %} | ',
+            '{% } %}',
             '{%: $.Contact.Title %}</h4>'
         ]),
 
@@ -53,7 +53,9 @@ define('Mobile/SalesLogix/Views/OpportunityContact/List', [
             var view = scene().getView(this.selectView),
                 selectionModel = view && view.get('selectionModel'),
                 entry;
-            if (!selectionModel) return;
+            if (!selectionModel) {
+                return;
+            }
 
             if (selectionModel.getSelectionCount() == 0 && view.options.allowEmptySelection)
                 scene.back();
@@ -64,16 +66,16 @@ define('Mobile/SalesLogix/Views/OpportunityContact/List', [
                 }),
                 context = found && found.options,
                 selections = selectionModel.getSelections();
-            for (var selectionKey in selections)
-            {
+            for (var selectionKey in selections) {
                 entry = {
                     'Opportunity': {'$key': context.key},
                     'Contact': view.items[selectionKey]
                 };
             }
 
-            if (entry)
+            if (entry) {
                 this.navigateToInsertView(entry);
+            }
         },
         createNavigationOptions: function() {
             var options = {
@@ -131,3 +133,4 @@ define('Mobile/SalesLogix/Views/OpportunityContact/List', [
         }
     });
 });
+

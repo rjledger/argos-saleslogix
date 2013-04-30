@@ -128,7 +128,7 @@ define('Mobile/SalesLogix/Views/AreaCategoryIssueLookup', [
                 return this.inherited(arguments);
         },
         formatSearchQuery: function(searchQuery) {
-
         }
     });
 });
+

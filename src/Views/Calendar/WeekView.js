@@ -114,7 +114,7 @@ define('Mobile/SalesLogix/Views/Calendar/WeekView', [
         ]),
         timeTemplate: new Simplate([
             '{% if ($.Timeless) { %}',
-                '<span class="p-time">{%= $$.allDayText %}</span>',
+            '<span class="p-time">{%= $$.allDayText %}</span>',
             '{% } else { %}',
                 '<span class="p-time">{%: moment($.StartDate).format($$.startTimeFormatText) %}</span>',
                 '<span class="p-meridiem">{%: moment($.StartDate).format("A") %}</span>',
@@ -213,7 +213,6 @@ define('Mobile/SalesLogix/Views/Calendar/WeekView', [
         },
         eventIcon: 'content/images/icons/Holiday_schemes_24.png',
 
-
         contractName: 'system',
         pageSize: 105, // gives 15 activities per day
         eventPageSize: 5,
@@ -221,8 +220,7 @@ define('Mobile/SalesLogix/Views/Calendar/WeekView', [
 
         _onRefresh: function(o) {
             this.inherited(arguments);
-            if (o.resourceKind === 'activities' || o.resourceKind === 'events')
-            {
+            if (o.resourceKind === 'activities' || o.resourceKind === 'events') {
                 this.refreshRequired = true;
             }
         },
@@ -244,8 +242,7 @@ define('Mobile/SalesLogix/Views/Calendar/WeekView', [
             this.navigateToDayView();
         },
         getThisWeekActivities: function() {
-            if (!this.isInCurrentWeek(this.todayDate))
-            {
+            if (!this.isInCurrentWeek(this.todayDate)) {
                 this.currentDate = this.todayDate.clone();
                 this.refresh();
             }
@@ -346,9 +343,7 @@ define('Mobile/SalesLogix/Views/Calendar/WeekView', [
                         if (currentEntry['Timeless'])
                         {
                             currentGroup.splice(1, 0, this.rowTemplate.apply(currentEntry, this));
-                        }
-                        else
-                        {
+                        } else {
                             currentGroup.push(this.rowTemplate.apply(currentEntry, this));
                         }
                         continue;
@@ -378,7 +373,9 @@ define('Mobile/SalesLogix/Views/Calendar/WeekView', [
 
         },
         addTodayDom: function() {
-            if (!this.isInCurrentWeek(this.todayDate)) return null;
+            if (!this.isInCurrentWeek(this.todayDate)) {
+                return null;
+            }
 
             var todayEntry = {
                     StartDate: this.todayDate.toDate(),
@@ -467,14 +464,11 @@ define('Mobile/SalesLogix/Views/Calendar/WeekView', [
             {
                 this.hideEventList();
                 return false;
-            }
-            else
-            {
+            } else {
                 this.showEventList();
             }
 
-            for (var i = 0; i < feedLength; i++)
-            {
+            for (var i = 0; i < feedLength; i++) {
                 var event = feed['$resources'][i];
                 event['isEvent'] = true;
                 event['StartDate'] = moment(convert.toDateFromString(event.StartDate));
@@ -483,8 +477,7 @@ define('Mobile/SalesLogix/Views/Calendar/WeekView', [
                 o.push(this.eventRowTemplate.apply(event, this));
             }
 
-            if (feed['$totalResults'] > feedLength)
-            {
+            if (feed['$totalResults'] > feedLength) {
                 domClass.add(this.eventContainerNode, 'list-has-more');
                 domConstruct.place(string.substitute(this.eventMoreText, [feed['$totalResults'] - feedLength]), this.eventRemainingContentNode, 'only');
             }
@@ -510,7 +503,8 @@ define('Mobile/SalesLogix/Views/Calendar/WeekView', [
         activate: function(options) {
             if (options)
                 this.processShowOptions(options);
-            
+            }
+
             this.setDefaultOptions();
             this.inherited(arguments, [this.options]);
         },
@@ -522,11 +516,11 @@ define('Mobile/SalesLogix/Views/Calendar/WeekView', [
             }
         },
         setDefaultOptions: function() {
-            if (typeof this.options === 'undefined')
+            if (typeof this.options === 'undefined') {
                 this.options = {};
+            }
 
-            if (typeof this.options['startDay'] === 'undefined')
-            {
+            if (typeof this.options['startDay'] === 'undefined') {
                 this.options['startDay'] = (App.context.userOptions)
                     ? parseInt(App.context.userOptions['Calendar:FirstDayofWeek'], 10)
                     : this.userWeekStartDay;
@@ -605,3 +599,4 @@ define('Mobile/SalesLogix/Views/Calendar/WeekView', [
         }
     });
 });
+

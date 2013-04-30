@@ -80,11 +80,31 @@
           "path": "../src"
         },
         {
+          "text": "SpeedSearchWidget.js",
+          "path": "../src"
+        },
+        {
           "text": "AddAccountContact.js",
           "path": "../src/Views"
         },
         {
           "text": "AreaCategoryIssueLookup.js",
+          "path": "../src/Views"
+        },
+        {
+          "text": "ExchangeRateLookup.js",
+          "path": "../src/Views"
+        },
+        {
+          "text": "MainToolbar.js",
+          "path": "../src/Views"
+        },
+        {
+          "text": "FooterToolbar.js",
+          "path": "../src/Views"
+        },
+        {
+          "text": "UpdateToolbar.js",
           "path": "../src/Views"
         },
         {
@@ -120,6 +140,10 @@
           "path": "../src/Views"
         },
         {
+          "text": "SpeedSearchList.js",
+          "path": "../src/Views"
+        },
+        {
           "text": "TextEdit.js",
           "path": "../src/Views"
         },
@@ -137,6 +161,10 @@
         },
         {
           "text": "Complete.js",
+          "path": "../src/Views/Activity"
+        },
+        {
+          "text": "MyList.js",
           "path": "../src/Views/Activity"
         },
         {
@@ -260,12 +288,28 @@
           "path": "../src/Views/OpportunityContact"
         },
         {
+          "text": "Detail.js",
+          "path": "../src/Views/OpportunityProduct"
+        },
+        {
+          "text": "Edit.js",
+          "path": "../src/Views/OpportunityProduct"
+        },
+        {
           "text": "List.js",
           "path": "../src/Views/OpportunityProduct"
         },
         {
           "text": "List.js",
           "path": "../src/Views/Owner"
+        },
+        {
+          "text": "List.js",
+          "path": "../src/Views/Product"
+        },
+        {
+          "text": "List.js",
+          "path": "../src/Views/ProductProgram"
         },
         {
           "text": "List.js",
@@ -329,6 +373,13 @@
         },
         {
           "text": "NoteField.js",
+          "path": "../src/Fields"
+        },
+          "text": "MultiCurrencyField.js",
+          "path": "../src/Fields"
+        },
+        {
+          "text": "NameField.js",
           "path": "../src/Fields"
         },
         {
@@ -633,6 +684,10 @@
           {
             "text": "Memory.js",
             "path": "../../../argos-sdk/libraries/dojo/dojo/store"
+          },
+          {
+            "text": "wai.js",
+            "path": "../../../argos-sdk/libraries/dojo/dijit/_base"
           }
       ]
     }

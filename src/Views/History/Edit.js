@@ -30,7 +30,7 @@ define('Mobile/SalesLogix/Views/History/Edit', [
         regardingText: 'regarding',
         isLeadText: 'for lead',
         startingText: 'time',
-		startingFormatText : 'M/D/YYYY h:mm A',
+        startingFormatText : 'M/D/YYYY h:mm A',
         titleText: 'Note',
         companyText: 'company',
         leadText: 'lead',
@@ -91,36 +91,38 @@ define('Mobile/SalesLogix/Views/History/Edit', [
             // the value for the 'IsLead' field will be set later, based on the value derived here.
 
             // todo: there is an issue when refreshing the edit view as options.isLead is persisted in the navigation state.
-            if (this.options.isForLead != undefined) return;
+            if (this.options.isForLead != undefined) {
+                return;
+            }
 
             this.options.isForLead = this.isInLeadContext();
 
-            if (this.options.isForLead)
+            if (this.options.isForLead) {
                 this.showFieldsForLead();
-            else
+            } else {
                 this.showFieldsForStandard();
+            }
         },
         onIsLeadChange: function(value, field) {
             this.options.isForLead = value;
 
-            if (this.options.isForLead)
+            if (this.options.isForLead) {
                 this.showFieldsForLead();
-            else
+            } else {
                 this.showFieldsForStandard();
+            }
         },
         onLeadChange: function(value, field) {
             var selection = field.getSelection();
 
-            if (selection && this.insert)
-            {
+            if (selection && this.insert) {
                 this.fields['AccountName'].setValue(utility.getValue(selection, 'Company'));
             }
         },
         onAccountChange: function(value, field) {
             var fields = this.fields;
             array.forEach(['Contact', 'Opportunity', 'Ticket'], function(f) {
-                if (value)
-                {
+                if (value) {
                     fields[f].dependsOn = 'Account';
                     fields[f].where = string.substitute('Account.Id eq "${0}"', [value['AccountId'] || value['key']]);
 
@@ -130,9 +132,7 @@ define('Mobile/SalesLogix/Views/History/Edit', [
                         fields[f].setValue(false);
                     }
 
-                }
-                else
-                {
+                } else {
                     fields[f].dependsOn = null;
                     fields[f].where = 'Account.AccountName ne null';
                 }
@@ -151,25 +151,29 @@ define('Mobile/SalesLogix/Views/History/Edit', [
         },
         showFieldsForLead: function() {
             array.forEach(this.fieldsForStandard.concat(this.fieldsForLeads), function(item) {
-                if (this.fields[item])
+                if (this.fields[item]) {
                     this.fields[item].hide();
+                }
             }, this);
 
             array.forEach(this.fieldsForLeads, function(item) {
-                if (this.fields[item])
+                if (this.fields[item]) {
                     this.fields[item].show();
+                }
             }, this);
         },
         showFieldsForStandard: function() {
             array.forEach(this.fieldsForStandard.concat(this.fieldsForLeads), function(item) {
-                if (this.fields[item])
+                if (this.fields[item]) {
                     this.fields[item].hide();
+                }
             }, this);
 
             array.forEach(this.fieldsForStandard, function(item) {
-                    if (this.fields[item])
-                        this.fields[item].show();
-                }, this);
+                if (this.fields[item]) {
+                    this.fields[item].show();
+                }
+            }, this);
         },
         applyContext: function() {
             var found = App.queryNavigationContext(function(o) {
@@ -187,17 +191,19 @@ define('Mobile/SalesLogix/Views/History/Edit', [
                 'tickets': this.applyTicketContext
             };
 
-            if (found && lookup[found.resourceKind])
+            if (found && lookup[found.resourceKind]) {
                 lookup[found.resourceKind].call(this, found);
+            }
 
             this.context = found;
-            
+
             var user = App.context && App.context.user;
 
             this.fields['Type'].setValue('atNote');
             this.fields['UserId'].setValue(user && user['$key']);
             this.fields['UserName'].setValue(user && user['$descriptor']);
             this.fields['StartDate'].setValue(new Date());
+            this.fields['Text'].setValue('');
         },
         applyAccountContext: function(context) {
             var accountField = this.fields['Account'],
@@ -212,7 +218,9 @@ define('Mobile/SalesLogix/Views/History/Edit', [
             var view = scene().getView(context.view),
                 entry = context.entry || (view && view.item);
 
-            if (!entry || !entry['$key']) return;
+            if (!entry || !entry['$key']) {
+                return;
+            }
 
             var leadField = this.fields['Lead'],
                 leadValue = {
@@ -237,8 +245,7 @@ define('Mobile/SalesLogix/Views/History/Edit', [
             this.onAccountDependentChange(opportunityField.getValue, opportunityField);
 
             var accountEntry;
-            if (context.entry && context.entry['Account'])
-            {
+            if (context.entry && context.entry['Account']) {
                 accountEntry = context.entry['Account'];
             }
             else
@@ -248,8 +255,7 @@ define('Mobile/SalesLogix/Views/History/Edit', [
                 accountEntry = entry['Account'];
             }
 
-            if (accountEntry)
-            {
+            if (accountEntry) {
                 var accountField = this.fields['Account'];
                 accountField.setValue({
                     'AccountId': accountEntry['$key'],
@@ -269,8 +275,7 @@ define('Mobile/SalesLogix/Views/History/Edit', [
             this.onAccountDependentChange(contactField.getValue(), contactField);
 
             var accountEntry;
-            if (context.entry && context.entry['Account'])
-            {
+            if (context.entry && context.entry['Account']) {
                 accountEntry = context.entry['Account'];
             }
             else
@@ -280,8 +285,7 @@ define('Mobile/SalesLogix/Views/History/Edit', [
                 accountEntry = entry['Account'];
             }
 
-            if (accountEntry)
-            {
+            if (accountEntry) {
                 var accountField = this.fields['Account'];
                 accountField.setValue({
                     'AccountId': accountEntry['$key'],
@@ -299,8 +303,7 @@ define('Mobile/SalesLogix/Views/History/Edit', [
             this.onAccountDependentChange(ticketField.getValue(), ticketField);
 
             var accountEntry, contactEntry;
-            if (context.entry && context.entry['Account'])
-            {
+            if (context.entry && context.entry['Account']) {
                 accountEntry = context.entry['Account'];
                 contactEntry = context.entry['Contact'];
             }
@@ -312,8 +315,7 @@ define('Mobile/SalesLogix/Views/History/Edit', [
                 contactEntry = entry['Contact'];
             }
 
-            if (accountEntry)
-            {
+            if (accountEntry) {
                 var accountField = this.fields['Account'];
                 accountField.setValue({
                     'AccountId': accountEntry['$key'],
@@ -322,8 +324,7 @@ define('Mobile/SalesLogix/Views/History/Edit', [
                 this.onAccountChange(accountField.getValue(), accountField);
             }
 
-            if (contactEntry)
-            {
+            if (contactEntry) {
                 var contactField = this.fields['Contact'];
                 contactField.setValue({
                     'ContactId': contactEntry['$key'],
@@ -335,20 +336,19 @@ define('Mobile/SalesLogix/Views/History/Edit', [
         setValues: function(values) {
             this.inherited(arguments);
 
-            if (this.isInLeadContext())
-            {
+            if (this.isInLeadContext()) {
                 var isLeadField = this.fields['IsLead'];
                 isLeadField.setValue(true);
                 this.onIsLeadChange(true, isLeadField);
 
                 var leadCompany = utility.getValue(values, 'Company');
-                if (leadCompany)
-                   this.fields['AccountName'].setValue(leadCompany);
+                if (leadCompany) {
+                    this.fields['AccountName'].setValue(leadCompany);
+                }
             }
 
             // entry may have been passed as full entry, reapply context logic to extract properties
-            if (this.context && this.context.resourceKind)
-            {
+            if (this.context && this.context.resourceKind) {
                 var lookup = {
                     'accounts': this.applyAccountContext,
                     'contacts': this.applyContactContext,
@@ -358,8 +358,6 @@ define('Mobile/SalesLogix/Views/History/Edit', [
                 };
                 lookup[this.context.resourceKind].call(this, this.context);
             }
-
-            this.fields['Text'].setValue(values['LongNotes'] || values['Notes'] || '');
         },
         formatDependentQuery: function(dependentValue, format, property) {
             property = property || '$key';
@@ -369,8 +367,7 @@ define('Mobile/SalesLogix/Views/History/Edit', [
         getValues: function() {
             var values = this.inherited(arguments);
 
-            if (this.fields['Text'].isDirty())
-            {
+            if (this.fields['Text'].isDirty()) {
                 var text = this.fields['Text'].getValue();
 
                 values = values || {};
@@ -384,133 +381,134 @@ define('Mobile/SalesLogix/Views/History/Edit', [
         },
         createLayout: function() {
             return this.layout || (this.layout = [{
-                title: this.detailsText,
-                name: 'DetailsSection',
-                children: [{
-                    name: 'Type',
-                    property: 'Type',
-                    type: 'hidden'
-                },{
-                    name: 'UserId',
-                    property: 'UserId',
-                    type: 'hidden'
-                },{
-                    name: 'UserName',
-                    property: 'UserName',
-                    type: 'hidden'
-                },{
-                    label: this.startingText,
-                    name: 'StartDate',
-                    property: 'StartDate',
-                    type: 'date',
-                    showTimePicker: true,
-                    dateFormatText: this.startingFormatText,
-                    minValue: (new Date(1900, 0, 1)),
-                    validator: [
-                        validator.exists,
-                        validator.isDateInRange
-                    ]
-                },{
-                    dependsOn: 'Type',
-                    label: this.regardingText,
-                    name: 'Description',
-                    property: 'Description',
-                    picklist: 'Note Regarding',
-                    orderBy: 'text asc',
-                    title: this.noteDescriptionTitleText,
-                    type: 'picklist'
-                }]
-            },{
-                title: this.longNotesTitleText,
-                name: 'NotesSection',
-                children: [{
-                    name: 'Text',
-                    property: 'Text',
-                    label: this.longNotesText,
-                    cls: 'row-edit-text',
-                    type: 'textarea'
-                }]
-            },{
-                title: this.relatedItemsText,
-                name: 'RelatedItemsSection',
-                children: [{
-                    label: this.isLeadText,
-                    name: 'IsLead',
-                    include: false,
-                    type: 'boolean',
-                    onText: this.yesText,
-                    offText: this.noText
-                },{
-                    label: this.accountText,
-                    name: 'Account',
-                    property: 'Account',
-                    type: 'lookup',
-                    emptyText: '',
-                    applyTo: '.',
-                    valueKeyProperty: 'AccountId',
-                    valueTextProperty: 'AccountName',
-                    view: 'account_related',
-                    validator: validator.exists
-                },{
-                    dependsOn: 'Account',
-                    label: this.contactText,
-                    name: 'Contact',
-                    property: 'Contact',
-                    type: 'lookup',
-                    emptyText: '',
-                    applyTo: '.',
-                    valueKeyProperty: 'ContactId',
-                    valueTextProperty: 'ContactName',
-                    view: 'contact_related',
-                    where: this.formatDependentQuery.bindDelegate(
-                        this, 'Account.Id eq "${0}"', 'AccountId'
-                    )
-                },{
-                    dependsOn: 'Account',
-                    label: this.opportunityText,
-                    name: 'Opportunity',
-                    property: 'Opportunity',
-                    type: 'lookup',
-                    emptyText: '',
-                    applyTo: '.',
-                    valueKeyProperty: 'OpportunityId',
-                    valueTextProperty: 'OpportunityName',
-                    view: 'opportunity_related',
-                    where: this.formatDependentQuery.bindDelegate(
-                        this, 'Account.Id eq "${0}"', 'AccountId'
-                    )
-                },{
-                    dependsOn: 'Account',
-                    label: this.ticketNumberText,
-                    name: 'Ticket',
-                    property: 'Ticket',
-                    type: 'lookup',
-                    emptyText: '',
-                    applyTo: '.',
-                    valueKeyProperty: 'TicketId',
-                    valueTextProperty: 'TicketNumber',
-                    view: 'ticket_related',
-                    where: this.formatDependentQuery.bindDelegate(
-                        this, 'Account.Id eq "${0}"', 'AccountId'
-                    )
-                },{
-                    label: this.leadText,
-                    name: 'Lead',
-                    property: 'Lead',
-                    type: 'lookup',
-                    emptyText: '',
-                    applyTo: '.',
-                    valueKeyProperty: 'LeadId',
-                    valueTextProperty: 'LeadName',
-                    view: 'lead_related',
-                    validator: validator.exists
-                },{
-                    label: this.companyText,
-                    name: 'AccountName',
-                    property: 'AccountName',
-                    type: 'text'
-                }]                        
-            }]);
+                    title: this.detailsText,
+                    name: 'DetailsSection',
+                    children: [{
+                            name: 'Type',
+                            property: 'Type',
+                            type: 'hidden'
+                        }, {
+                            name: 'UserId',
+                            property: 'UserId',
+                            type: 'hidden'
+                        }, {
+                            name: 'UserName',
+                            property: 'UserName',
+                            type: 'hidden'
+                        }, {
+                            label: this.startingText,
+                            name: 'StartDate',
+                            property: 'StartDate',
+                            type: 'date',
+                            showTimePicker: true,
+                            dateFormatText: this.startingFormatText,
+                            minValue: (new Date(1900, 0, 1)),
+                            validator: [
+                                validator.exists,
+                                validator.isDateInRange
+                            ]
+                        }, {
+                            dependsOn: 'Type',
+                            label: this.regardingText,
+                            name: 'Description',
+                            property: 'Description',
+                            picklist: 'Note Regarding',
+                            orderBy: 'text asc',
+                            title: this.noteDescriptionTitleText,
+                            type: 'picklist'
+                        }]
+                }, {
+                    title: this.longNotesTitleText,
+                    name: 'NotesSection',
+                    children: [{
+                        name: 'Text',
+                        property: 'Text',
+                        label: this.longNotesText,
+                        cls: 'row-edit-text',
+                        type: 'textarea'
+                    }]
+                }, {
+                    title: this.relatedItemsText,
+                    name: 'RelatedItemsSection',
+                    children: [{
+                            label: this.isLeadText,
+                            name: 'IsLead',
+                            include: false,
+                            type: 'boolean',
+                            onText: this.yesText,
+                            offText: this.noText
+                        }, {
+                            label: this.accountText,
+                            name: 'Account',
+                            property: 'Account',
+                            type: 'lookup',
+                            emptyText: '',
+                            applyTo: '.',
+                            valueKeyProperty: 'AccountId',
+                            valueTextProperty: 'AccountName',
+                            view: 'account_related',
+                            validator: validator.exists
+                        }, {
+                            dependsOn: 'Account',
+                            label: this.contactText,
+                            name: 'Contact',
+                            property: 'Contact',
+                            type: 'lookup',
+                            emptyText: '',
+                            applyTo: '.',
+                            valueKeyProperty: 'ContactId',
+                            valueTextProperty: 'ContactName',
+                            view: 'contact_related',
+                            where: this.formatDependentQuery.bindDelegate(
+                                this, 'Account.Id eq "${0}"', 'AccountId'
+                            )
+                        }, {
+                            dependsOn: 'Account',
+                            label: this.opportunityText,
+                            name: 'Opportunity',
+                            property: 'Opportunity',
+                            type: 'lookup',
+                            emptyText: '',
+                            applyTo: '.',
+                            valueKeyProperty: 'OpportunityId',
+                            valueTextProperty: 'OpportunityName',
+                            view: 'opportunity_related',
+                            where: this.formatDependentQuery.bindDelegate(
+                                this, 'Account.Id eq "${0}"', 'AccountId'
+                            )
+                        }, {
+                            dependsOn: 'Account',
+                            label: this.ticketNumberText,
+                            name: 'Ticket',
+                            property: 'Ticket',
+                            type: 'lookup',
+                            emptyText: '',
+                            applyTo: '.',
+                            valueKeyProperty: 'TicketId',
+                            valueTextProperty: 'TicketNumber',
+                            view: 'ticket_related',
+                            where: this.formatDependentQuery.bindDelegate(
+                                this, 'Account.Id eq "${0}"', 'AccountId'
+                            )
+                        }, {
+                            label: this.leadText,
+                            name: 'Lead',
+                            property: 'Lead',
+                            type: 'lookup',
+                            emptyText: '',
+                            applyTo: '.',
+                            valueKeyProperty: 'LeadId',
+                            valueTextProperty: 'LeadName',
+                            view: 'lead_related',
+                            validator: validator.exists
+                        }, {
+                            label: this.companyText,
+                            name: 'AccountName',
+                            property: 'AccountName',
+                            type: 'text'
+                        }]
+                }]);
         }
     });
 });
+

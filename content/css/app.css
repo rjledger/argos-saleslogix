@@ -1,3 +1,24 @@
+h4
+{
+    color: #000;
+}
+
+.row > div > label,
+.row > label
+{
+    float: none;
+}
+
+.row > div > label,
+.row > label,
+.row > div > span,
+.row > div > a,
+.row > span,
+.row > a
+{
+    display: inline-block;
+}
+
 .list-item-selected
 {
     background-color: #D5EFFA;
@@ -401,10 +422,16 @@ li[data-ticket-status] .list-item-selector,
     visibility: visible;
 }
 
+.row-edit[data-field-type="multiCurrency"] div > span
+{
+    position: absolute;
+    right: 4px;
+}
+
 .row-edit[data-field-type="lookup"] > div > .button
 {
     background-image: url(../images/icons/srch_24.png);
-    background-image: url(../images/icons/srch_24.png), linear-gradient(top, #e6e6e6, #cccccc);
+    background-image: url(../images/icons/srch_24.png), linear-gradient(to bottom, #e6e6e6, #cccccc);
     background-image: url(../images/icons/srch_24.png), -webkit-gradient(
 		linear,
 		left top,
@@ -442,7 +469,7 @@ li[data-ticket-status] .list-item-selector,
 .row-edit[data-field-type="date"] > div > .button
 {
     background-image: url(../images/icons/Calendar_24x24.png);
-    background-image: url(../images/icons/Calendar_24x24.png), linear-gradient(top, #e6e6e6, #cccccc);
+    background-image: url(../images/icons/Calendar_24x24.png), linear-gradient(to bottom, #e6e6e6, #cccccc);
     background-image: url(../images/icons/Calendar_24x24.png), -webkit-gradient(
 		linear,
 		left top,
@@ -482,7 +509,7 @@ li[data-ticket-status] .list-item-selector,
 .row-edit[data-field-type="note"] > div > .button
 {
     background-image: url(../images/icons/edit_24.png);
-    background-image: url(../images/icons/edit_24.png), linear-gradient(top, #e6e6e6, #cccccc);
+    background-image: url(../images/icons/edit_24.png), linear-gradient(to bottom, #e6e6e6, #cccccc);
     background-image: url(../images/icons/edit_24.png), -webkit-gradient(
 		linear,
 		left top,
@@ -695,8 +722,13 @@ body.transition > .footer-toolbar
     height: auto;
     border: none;
     font-weight: normal;
+}
+
+.ie9 .footer-toolbar > div > .toolButton
+{
     -ms-filter: "";
 }
+
 
 .footer-toolbar > div > .toolButton-left
 {
@@ -849,7 +881,7 @@ For single view we want the list to adjust to screen (50/50 split on wide enough
     border-radius: 5px 5px 0px 0px;
 
     background-color: #D6E3BF;
-    background-image: linear-gradient(top, #EAF1DF 1%, #D6E3BF 100%);
+    background-image: linear-gradient(to bottom, #EAF1DF 1%, #D6E3BF 100%);
     background-image: -webkit-gradient(
         linear,
         left top,
@@ -858,13 +890,18 @@ For single view we want the list to adjust to screen (50/50 split on wide enough
         color-stop(1, #D6E3BF)
     );
     background-image: -moz-linear-gradient(top, #EAF1DF 1%, #D6E3BF 100%);
+}
+
+.ie9 #calendar_yearlist > .year-content > .year-table tr.calendar-week-title
+{
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#EAF1DF, endColorstr=#D6E3BF)";
 }
+
 #calendar_yearlist > .year-content > .year-table tr.calendar-week-header
 {
     border-spacing: 0;
     background-color: #D6E3BF;
-    background-image: linear-gradient(top, #D6E3BF, #CBE29E);
+    background-image: linear-gradient(to bottom, #D6E3BF, #CBE29E);
     background-image: -webkit-gradient(
         linear,
         left top,
@@ -873,6 +910,10 @@ For single view we want the list to adjust to screen (50/50 split on wide enough
         color-stop(1, #CBE29E)
     );
     background-image: -moz-linear-gradient(top, #D6E3BF, #CBE29E);
+}
+
+.ie9 #calendar_yearlist > .year-content > .year-table tr.calendar-week-header
+{
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#D6E3BF, endColorstr=#CBE29E)";
 }
 
@@ -886,7 +927,7 @@ For single view we want the list to adjust to screen (50/50 split on wide enough
     border-bottom: 1px solid #000;
     border-top: 1px solid #000;
     background-color: #e6e6e6;
-    background-image: linear-gradient(top, #e6e6e6, #cccccc);
+    background-image: linear-gradient(to bottom, #e6e6e6, #cccccc);
     background-image: -webkit-gradient(
         linear,
         left top,
@@ -901,7 +942,6 @@ For single view we want the list to adjust to screen (50/50 split on wide enough
     color: #000;
     text-shadow: #fff 0px 1px 0px;
     font-weight: bold;
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6e6e6, endColorstr=#cccccc)";
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -915,6 +955,16 @@ For single view we want the list to adjust to screen (50/50 split on wide enough
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
+}
+
+.ie9 #calendar_daylist .event-content > h2,
+.ie9 #calendar_monthlist .event-content > h2,
+.ie9 #calendar_monthlist .activity-content > h2,
+.ie9 #calendar_monthlist .day-content > h2,
+.ie9 #calendar_daylist > h2,
+.ie9 #calendar_weeklist > div > h2
+{
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6e6e6, endColorstr=#cccccc)";
 }
 
 
@@ -990,7 +1040,7 @@ For single view we want the list to adjust to screen (50/50 split on wide enough
     text-align: center;
 
     background-color: #e6e6e6;
-    background-image: linear-gradient(top, #e6e6e6, #cccccc);
+    background-image: linear-gradient(to bottom, #e6e6e6, #cccccc);
     background-image: -webkit-gradient(
         linear,
         left top,
@@ -1353,7 +1403,7 @@ td.entry-table-description {
 
     background-color: #eaf1df;
     background-image: linear-gradient(
-        center top,
+        to bottom,
         #eaf1df 0%,
         #d6e3bf 50%,
         #c1d59f 50%,
@@ -1378,7 +1428,13 @@ td.entry-table-description {
 
     -moz-box-shadow: rgba(255,255,255,1.0) 0px 0px 1px inset;
     -webkit-box-shadow: rgba(255,255,255,1.0) 0px 0px 1px inset;
+}
 
+.ie9 .activities-for-day > .split-buttons > .button[data-tool="day"],
+.ie9 .activities-for-month > .split-buttons > .button[data-tool="month"],
+.ie9 .activities-for-year > .split-buttons > .button[data-tool="year"],
+.ie9 .activities-for-week > .split-buttons > .button[data-tool="week"]
+{
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#eaf1df, endColorstr=#d6e3bf)";
 }
 
@@ -1424,10 +1480,8 @@ td.entry-table-description {
 
     background-color: #f8d6aa;
     background-image: linear-gradient(
-        center top,
+        to bottom,
         #f8d6aa 0%,
-        /* #f4c180 50%, */
-        /* #f0ac55 50%, */
         #f4c180 100%
     );
     background-image: -webkit-gradient(
@@ -1435,15 +1489,11 @@ td.entry-table-description {
         left top,
         left bottom,
         color-stop(0, #f8d6aa),
-        /* color-stop(0.50, #f4c180), */
-        /* color-stop(0.50, #f0ac55), */
         color-stop(1, #f4c180)
     );
     background-image: -moz-linear-gradient(
         center top,
         #f8d6aa 0%,
-        /* #f4c180 50%, */
-        /* #f0ac55 50%, */
         #f4c180 100%
     );
     box-shadow: rgba(255,255,255,1.0) 0px 0px 1px inset;
@@ -1453,7 +1503,10 @@ td.entry-table-description {
     background-clip: padding-box;
     -webkit-background-clip: padding-box;
     -moz-background-clip: padding-box;
+}
 
+.ie9 .update-toolbar
+{
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#f8d6aa, endColorstr=#f4c180)";
 }
 

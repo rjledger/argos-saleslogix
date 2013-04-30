@@ -22,9 +22,9 @@ define('Mobile/SalesLogix/Views/Event/List', [
         itemTemplate: new Simplate([
             '<h3>{%= $.Description %}</h3>',
             '<h4>',
-                '{%: Mobile.SalesLogix.Format.date($.StartDate, $$.eventDateFormatText) %}',
-                '&nbsp;-&nbsp;',
-                '{%: Mobile.SalesLogix.Format.date($.EndDate, $$.eventDateFormatText) %}',
+            '{%: Mobile.SalesLogix.Format.date($.StartDate, $$.eventDateFormatText) %}',
+            '&nbsp;-&nbsp;',
+            '{%: Mobile.SalesLogix.Format.date($.EndDate, $$.eventDateFormatText) %}',
             '</h4>'
         ]),
 
@@ -50,3 +50,4 @@ define('Mobile/SalesLogix/Views/Event/List', [
         }
     });
 });
+

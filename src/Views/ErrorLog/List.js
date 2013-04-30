@@ -36,8 +36,7 @@ define('Mobile/SalesLogix/Views/ErrorLog/List', [
 
         _onRefresh: function(o) {
             this.inherited(arguments);
-            if (o.resourceKind === 'errorlogs' || o.resourceKind === 'localStorage')
-            {
+            if (o.resourceKind === 'errorlogs' || o.resourceKind === 'localStorage') {
                 this.refreshRequired = true;
             }
         },
@@ -62,3 +61,4 @@ define('Mobile/SalesLogix/Views/ErrorLog/List', [
         }
     });
 });
+

@@ -14,6 +14,7 @@ define('Mobile/SalesLogix/Views/Home', [
     'argos!application',
     'argos!scene',
     'argos!customizations'
+    'Mobile/SalesLogix/SpeedSearchWidget'
 ], function(
     declare,
     array,
@@ -24,6 +25,7 @@ define('Mobile/SalesLogix/Views/Home', [
     app,
     scene,
     customizations
+    SpeedSearchWidget
 ) {
     return declare('Mobile.SalesLogix.Views.Home', [GroupedList], {
         //Templates
@@ -58,10 +60,12 @@ define('Mobile/SalesLogix/Views/Home', [
         //View Properties
         id: 'home',
         expose: false,
-        enableSearch: false,
+        enableSearch: true,
+        searchWidgetClass: SpeedSearchWidget,
         customizationSet: 'home',
         configurationView: 'configure',
         addAccountContactView: 'add_account_contact',
+        searchView: 'speedsearch_list',
 
         navigateToView: function(evt, node) {
             var view = node && domAttr.get(node, 'data-view');
@@ -85,6 +89,7 @@ define('Mobile/SalesLogix/Views/Home', [
                     tag: 'view',
                     title: this.viewsText
                 };
+            }
 
             return {
                 tag: 'action',
@@ -229,8 +234,9 @@ define('Mobile/SalesLogix/Views/Home', [
                 visible = preferences && preferences.home && preferences.home.visible,
                 shown = this.feed && this.feed['$resources'];
 
-            if (!visible || !shown || (visible.length != shown.length))
+            if (!visible || !shown || (visible.length != shown.length)) {
                 return true;
+            }
 
             for (var i = 0; i < visible.length; i++)
                 if (visible[i] != shown[i]['$key']) return true;
@@ -240,3 +246,4 @@ define('Mobile/SalesLogix/Views/Home', [
         }
     });
 });
+

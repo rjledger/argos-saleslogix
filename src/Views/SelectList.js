@@ -24,10 +24,11 @@ define('Mobile/SalesLogix/Views/SelectList', [
                 this.memory.setData(this.options && this.options.data['$resources']);
         },
         refreshRequiredFor: function(options) {
-            if (this.options)
+            if (this.options) {
                 return options ? (this.options.data != options.data) : false;
-            else
+            } else {
                 return true;
+            }
         },
         hasMoreData: function() {
             return false;
@@ -42,3 +43,4 @@ define('Mobile/SalesLogix/Views/SelectList', [
         }
     });
 });
+

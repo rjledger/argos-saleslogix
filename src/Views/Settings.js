@@ -48,7 +48,7 @@ define('Mobile/SalesLogix/Views/Settings', [
             'clearLocalStorage',
             'viewErrorLogs'
         ],
-        createActions : function() {
+        createActions: function() {
             this.actions = {
                 'clearLocalStorage': {
                     title: this.clearLocalStorageTitleText,
@@ -58,7 +58,7 @@ define('Mobile/SalesLogix/Views/Settings', [
                     title: this.clearAuthenticationTitleText,
                     icon: 'content/images/icons/security_24.png'
                 },
-                'viewErrorLogs':{
+                'viewErrorLogs': {
                     title: this.errorLogTitleText,
                     icon: 'content/images/icons/Ticket_24x24.png'
                 }
@@ -68,8 +68,9 @@ define('Mobile/SalesLogix/Views/Settings', [
             scene().showView('errorlog_list');
         },
         clearLocalStorage: function() {
-            if (window.localStorage)
+            if (window.localStorage) {
                 window.localStorage.clear();
+            }
 
             connect.publish('/app/refresh', [{
                 resourceKind: 'localStorage'
@@ -78,8 +79,9 @@ define('Mobile/SalesLogix/Views/Settings', [
             alert(this.localStorageClearedText);
         },
         clearAuthentication: function() {
-            if (window.localStorage)
+            if (window.localStorage) {
                 window.localStorage.removeItem('credentials');
+            }
 
             alert(this.credentialsClearedText);
         },
@@ -89,11 +91,9 @@ define('Mobile/SalesLogix/Views/Settings', [
         requestData: function() {
             var list = [];
 
-            for (var i = 0; i < this.actionOrder.length; i++)
-            {
+            for (var i = 0; i < this.actionOrder.length; i++) {
                 var action = this.actions[this.actionOrder[i]];
-                if (action)
-                {
+                if (action) {
                     list.push({
                         action: this.actionOrder[i],
                         title: action.title,
@@ -115,3 +115,4 @@ define('Mobile/SalesLogix/Views/Settings', [
         }
     });
 });
+
