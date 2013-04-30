@@ -3,25 +3,29 @@ define('Mobile/SalesLogix/Views/Activity/MyList', [
     'dojo/string',
     'dojo/query',
     'dojo/_base/connect',
-    'Sage/Platform/Mobile/List',
+    'argos/List',
+    'argos/_SDataListMixin',
     'Mobile/SalesLogix/Format',
     'Mobile/SalesLogix/Environment',
-    'Sage/Platform/Mobile/Format',
+    'argos/format',
     'Mobile/SalesLogix/Views/Activity/List',
-    'Sage/Platform/Mobile/Convert',
-    'Sage/Platform/Mobile/ErrorManager'
+    'argos/convert',
+    'argos/ErrorManager',
+    'argos!scene'
 ], function(
     declare,
     string,
     query,
     connect,
     List,
+    _SDataListMixin,
     format,
     environment,
     platformFormat,
     ActivityList,
     convert,
-    ErrorManager
+    ErrorManager,
+    scene
 ) {
 
     return declare('Mobile.SalesLogix.Views.Activity.MyList', [ActivityList], {
@@ -47,7 +51,7 @@ define('Mobile/SalesLogix/Views/Activity/MyList', [
             '{%! $$.activityTimeTemplate %}',
             '<span class="p-description">&nbsp;{%: $.Activity.Description %}{% if ($.Status === "asUnconfirmed") { %} ({%: Mobile.SalesLogix.Format.userActivityStatus($.Status) %}) {% } %}</span>',
             '</h3>',
-            '<h4>{%: Mobile.SalesLogix.Format.date($.Activity.StartDate, $$.startDateFormatText, Sage.Platform.Mobile.Convert.toBoolean($.Activity.Timeless)) %} - {%! $$.nameTemplate %}</h4>'
+            '<h4>{%: Mobile.SalesLogix.Format.date($.Activity.StartDate, $$.startDateFormatText, argos.convert.toBoolean($.Activity.Timeless)) %} - {%! $$.nameTemplate %}</h4>'
         ]),
         nameTemplate: new Simplate([
             '{% if ($.Activity.ContactName) { %}',
@@ -58,7 +62,7 @@ define('Mobile/SalesLogix/Views/Activity/MyList', [
             '{%: $.Activity.LeadName %}',
             '{% } %}',
             '{% if ($.Activity.PhoneNumber) { %}',
-            ' [{%: Sage.Platform.Mobile.Format.phone($.Activity.PhoneNumber) %}]',
+            ' [{%: argos.format.phone($.Activity.PhoneNumber) %}]',
             '{% } %}'
         ]),
 
@@ -124,18 +128,15 @@ define('Mobile/SalesLogix/Views/Activity/MyList', [
         },
 
         navigateToHistoryInsert: function(type, entry, complete) {
-            var view = App.getView(this.historyEditView);
-            if (view) {
-                environment.refreshActivityLists();
-                view.show({
-                        title: this.activityTypeText[type],
-                        template: {},
-                        entry: entry,
-                        insert: true
-                    }, {
-                        complete: complete
-                    });
-            }
+            environment.refreshActivityLists();
+            scene().showView(this.historyEditView, {
+                    title: this.activityTypeText[type],
+                    template: {},
+                    entry: entry,
+                    insert: true
+                }, {
+                    complete: complete
+            });
         },
 
         createActionLayout: function() {
@@ -258,7 +259,7 @@ define('Mobile/SalesLogix/Views/Activity/MyList', [
                 activityId = activityId.substring(0, 12);
             }
 
-            req = new Sage.SData.Client.SDataResourceCollectionRequest(this.getService());
+            req = new Sage.SData.Client.SDataResourceCollectionRequest(this.getConnection());
             req.setResourceKind('userNotifications');
             req.setContractName('dynamic');
             req.setQueryArg('where', string.substitute('ActivityId eq \'${0}\' and ToUser.Id eq \'${1}\'', [activityId, userId]));
@@ -302,7 +303,7 @@ define('Mobile/SalesLogix/Views/Activity/MyList', [
                 }
             };
 
-            var request = new Sage.SData.Client.SDataServiceOperationRequest(this.getService())
+            var request = new Sage.SData.Client.SDataServiceOperationRequest(this.getConnection())
                 .setContractName('dynamic')
                 .setResourceKind('usernotifications')
                 .setOperationName(operation.toLowerCase());
@@ -329,7 +330,7 @@ define('Mobile/SalesLogix/Views/Activity/MyList', [
                 }
             };
 
-            request = new Sage.SData.Client.SDataServiceOperationRequest(this.getService())
+            request = new Sage.SData.Client.SDataServiceOperationRequest(this.getConnection())
                 .setResourceKind('activities')
                 .setContractName('system')
                 .setOperationName('Complete');

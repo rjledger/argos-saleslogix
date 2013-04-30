@@ -6,7 +6,8 @@ define('Mobile/SalesLogix/Views/SpeedSearchList', [
     'dojo/dom-construct',
     'dojo/string',
     'Mobile/SalesLogix/SpeedSearchWidget',
-    'Sage/Platform/Mobile/List'
+    'argos/List',
+    'argos/_SDataListMixin'
 ], function(
     declare,
     lang,
@@ -15,10 +16,11 @@ define('Mobile/SalesLogix/Views/SpeedSearchList', [
     domConstruct,
     string,
     SpeedSearchWidget,
-    List
+    List,
+    _SDataListMixin
 ) {
 
-    return declare('Mobile.SalesLogix.Views.SpeedSearchList', [List], {
+    return declare('Mobile.SalesLogix.Views.SpeedSearchList', [List, _SDataListMixin], {
         //Templates
         rowTemplate: new Simplate([
             '<li data-action="activateEntry" data-key="{%= $.$key %}" data-descriptor="{%: $.type %}">',
@@ -152,7 +154,11 @@ define('Mobile/SalesLogix/Views/SpeedSearchList', [
             count = (this.currentPage + 1) * this.pageSize;
             return count < total;
         },
+        _processData: function(feed) {
+            debugger;
+        },
         processFeed: function(feed) {
+            debugger;
             if (!this.feed) {
                 this.set('listContent', '');
             }
@@ -189,7 +195,8 @@ define('Mobile/SalesLogix/Views/SpeedSearchList', [
             domClass.toggle(this.domNode, 'list-has-more', this.hasMoreData());
         },
         createRequest: function() {
-            var request = new Sage.SData.Client.SDataServiceOperationRequest(this.getService())
+            debugger;
+            var request = new Sage.SData.Client.SDataServiceOperationRequest(this.getConnection())
                 .setContractName('system')
                 .setOperationName('executeSearch');
             return request;
@@ -216,6 +223,7 @@ define('Mobile/SalesLogix/Views/SpeedSearchList', [
             return entry;
         },
         requestData: function() {
+            debugger;
             domClass.add(this.domNode, 'list-loading');
 
             var request = this.createRequest(),

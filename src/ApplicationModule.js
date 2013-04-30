@@ -8,7 +8,8 @@ define('Mobile/SalesLogix/ApplicationModule', [
     './Fields/NameField',
     './Fields/NoteField',
     './Fields/PicklistField',
-    './Fields/RecurrencesField'
+    './Fields/RecurrencesField',
+    'argos/List'
 ], function(
     declare,
     lang,
@@ -19,12 +20,17 @@ define('Mobile/SalesLogix/ApplicationModule', [
     NameField,
     NoteField,
     PicklistField,
-    RecurrencesField
+    RecurrencesField,
+    List
 ) {
 
     return declare('Mobile.SalesLogix.ApplicationModule', [ApplicationModule], {
+        searchText: 'Lookup',
         loadViews: function(scene) {
             this.inherited(arguments);
+            lang.extend(List, {
+                searchText: this.searchText
+            });
 
             scene.registerViews(ApplicationViews);
             this.registerFields();
@@ -41,19 +47,8 @@ define('Mobile/SalesLogix/ApplicationModule', [
             FieldRegistry.register(fieldMap);
         },
         loadCustomizations: function() {
-            /*
-            this.loadBaseCustomizations();
-            */
         },
         loadBaseCustomizations: function() {
-            /*
-            lang.extend(List, {
-                expose: true,
-                getSecurity: function() {
-                    return (this.expose && this.security); // only check security on exposed views
-                }
-            });
-            */
         }
     });
 

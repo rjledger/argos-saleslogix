@@ -50,6 +50,7 @@ define('Mobile/SalesLogix/Views/Home', [
         actionsText: 'Quick Actions',
         viewsText: 'Go To',
         accountsText: 'Accounts',
+        myActivitesText: 'My Acivities',
         contactsText: 'Contacts',
         leadsText: 'Leads',
         opportunitiesText: 'Opportunities',
@@ -66,6 +67,7 @@ define('Mobile/SalesLogix/Views/Home', [
         configurationView: 'configure',
         addAccountContactView: 'add_account_contact',
         searchView: 'speedsearch_list',
+        searchText: 'SpeedSearch',
 
         navigateToView: function(evt, node) {
             var view = node && domAttr.get(node, 'data-view');
@@ -116,6 +118,29 @@ define('Mobile/SalesLogix/Views/Home', [
             },{
                 id: 'views',
                 children: [{
+                    'name': 'myactivity_list',
+                    'view': 'myactivity_list',
+                    'action': 'navigateToView',
+                    'default': true,
+                    'icon': 'content/images/icons/To_Do_24x24.png',
+                    'title': this.myActivitesText
+                },{
+                    'name': 'calendar_daylist',
+                    'view': 'calendar_daylist',
+                    'action': 'navigateToView',
+                    'defult': true,
+                    'icon': 'content/images/icons/Calendar_24x24.png',
+                    'title': this.calendarText,
+                    'security': null
+                },{
+                    'name': 'history_list',
+                    'view': 'history_list',
+                    'action': 'navigateToView',
+                    'default': true,
+                    'icon': 'content/images/icons/journal_24.png',
+                    'title': this.historyText,
+                    'security': null
+                },{
                     'name': 'account_list',
                     'view': 'account_list',
                     'action': 'navigateToView',
@@ -155,22 +180,6 @@ define('Mobile/SalesLogix/Views/Home', [
                     'icon': 'content/images/icons/Ticket_24x24.png',
                     'title': this.ticketsText,
                     'security': 'Entities/Ticket/View'
-                },{
-                    'name': 'calendar_daylist',
-                    'view': 'calendar_daylist',
-                    'action': 'navigateToView',
-                    'icon': 'content/images/icons/Calendar_24x24.png',
-                    'title': this.calendarText,
-                    'security': null,
-                    'defult': true
-                },{
-                    'name': 'history_list',
-                    'view': 'history_list',
-                    'action': 'navigateToView',
-                    'default': true,
-                    'icon': 'content/images/icons/journal_24.png',
-                    'title': this.historyText,
-                    'security': null
                 }]
             }]);
         },
