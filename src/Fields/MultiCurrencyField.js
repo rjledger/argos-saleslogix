@@ -1,7 +1,6 @@
 define('Mobile/SalesLogix/Fields/MultiCurrencyField', [
     'dojo/_base/declare',
-    'Sage/Platform/Mobile/Fields/DecimalField',
-    'Sage/Platform/Mobile/FieldManager'
+    'argos/Fields/DecimalField'
 ], function(
     declare,
     DecimalField,
@@ -32,6 +31,4 @@ define('Mobile/SalesLogix/Fields/MultiCurrencyField', [
             this.set('currencyCode', code);
         }
     });
-
-    return FieldManager.register('multiCurrency', control);
 });

@@ -1,6 +1,6 @@
 define('Mobile/SalesLogix/Views/ExchangeRateLookup', [
     'dojo/_base/declare',
-    'Sage/Platform/Mobile/List'
+    'argos/List'
 ], function(
     declare,
     List
