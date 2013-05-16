@@ -1,13 +1,13 @@
 define('localization/saleslogix/fa-ke', ['localization/fa-ke', 'Mobile/SalesLogix/ApplicationModule'], function() {
 
 localize("Sage.Platform.Mobile.Fields.DateField", {
-  "dateFormatText": "__MM/dd/yyyy__",
+  "dateFormatText": "MM/dd/yyyy",
   "emptyText": "",
   "invalidDateFormatErrorText": "__Field '${0}' has Invalid date format.__"
 });
 
 localize("Sage.Platform.Mobile.Format", {
-  "percentFormatText": "__${0}${1}__",
+  "percentFormatText": "${0}${1}",
   "yesText": "__Yes__",
   "noText": "__No__",
   "trueText": "__T__",
@@ -15,12 +15,13 @@ localize("Sage.Platform.Mobile.Format", {
   "hoursText": "__hours__",
   "hourText": "__hour__",
   "minutesText": "__minutes__",
-  "minuteText": "__minute__"
+  "minuteText": "__minute__",
+  "bytesText": "__bytes__"
 });
 
 localize("Mobile.SalesLogix.Views.Activity.Complete", {
-  "completedFormatText": "__M/d/yyyy h:mm tt__",
-  "startingFormatText": "__M/d/yyyy h:mm tt__",
+  "completedFormatText": "M/d/yyyy h:mm tt",
+  "startingFormatText": "M/d/yyyy h:mm tt",
   "activityInfoText": "__Activity Info__",
   "accountText": "__account__",
   "contactText": "__contact__",
@@ -69,9 +70,9 @@ localize("Mobile.SalesLogix.Views.Activity.Complete", {
 });
 
 localize("Mobile.SalesLogix.Views.Activity.Detail", {
-  "startDateFormatText": "__M/d/yyyy h:mm:ss tt__",
-  "timelessDateFormatText": "__M/d/yyyy__",
-  "alarmDateFormatText": "__M/d/yyyy h:mm:ss tt__",
+  "startDateFormatText": "M/d/yyyy h:mm:ss tt",
+  "timelessDateFormatText": "M/d/yyyy",
+  "alarmDateFormatText": "M/d/yyyy h:mm:ss tt",
   "activityTypeText": {
     "atToDo": "__To-Do__",
     "atPhoneCall": "__Phone Call__",
@@ -107,11 +108,14 @@ localize("Mobile.SalesLogix.Views.Activity.Detail", {
   "whenText": "__When__",
   "whoText": "__Who__",
   "recurrenceText": "__recurrence__",
-  "confirmEditRecurrenceText": "__Edit all Occurrences?\\nCancel to edit single Occurrence.__"
+  "confirmEditRecurrenceText": "__Edit all Occurrences?\\nCancel to edit single Occurrence.__",
+  "relatedAttachmentText": "__Attachments__",
+  "relatedAttachmentTitleText": "__Activity Attachments__",
+  "relatedItemsText": "__Related Items__"
 });
 
 localize("Mobile.SalesLogix.Views.Activity.Edit", {
-  "startingFormatText": "__M/d/yyyy h:mm tt__",
+  "startingFormatText": "M/d/yyyy h:mm tt",
   "activityCategoryTitleText": "__Activity Category__",
   "activityDescriptionTitleText": "__Activity Description__",
   "locationText": "__location__",
@@ -168,15 +172,35 @@ localize("Mobile.SalesLogix.Views.Activity.Edit", {
 });
 
 localize("Mobile.SalesLogix.Views.Activity.List", {
-  "startDateFormatText": "__ddd M/d/yy__",
-  "startTimeFormatText": "__h:mm__",
+  "startDateFormatText": "ddd M/d/yy",
+  "startTimeFormatText": "h:mm",
   "allDayText": "__All-Day__",
   "titleText": "__Activities__"
 });
 
+localize("Mobile.SalesLogix.Views.Attachment.AddAttachment", {
+  "attachmentDateFormatText": "ddd M/d/yy h:mm:tt",
+  "titleText": "__Add Attachments__"
+});
+
+localize("Mobile.SalesLogix.Views.Attachment.Detail", {
+  "attachmentDateFormatText": "ddd M/d/yy h:mm:tt",
+  "detailsText": "__Attachment Details__",
+  "descriptionText": "__description__",
+  "fileNameText": "__file name__",
+  "attachDateText": "__attachment date__",
+  "fileSizeText": "__file size__",
+  "userText": "__user__"
+});
+
+localize("Mobile.SalesLogix.Views.Attachment.List", {
+  "attachmentDateFormatText": "ddd M/d/yy h:mm:tt",
+  "titleText": "__Attachments__"
+});
+
 localize("Mobile.SalesLogix.Views.Calendar.DayView", {
-  "dateHeaderFormatText": "__dddd, MM/dd/yyyy__",
-  "startTimeFormatText": "__h:mm__",
+  "dateHeaderFormatText": "dddd, MM/dd/yyyy",
+  "startTimeFormatText": "h:mm",
   "titleText": "__Calendar__",
   "todayText": "__Today__",
   "dayText": "__Day__",
@@ -190,9 +214,9 @@ localize("Mobile.SalesLogix.Views.Calendar.DayView", {
 });
 
 localize("Mobile.SalesLogix.Views.Calendar.MonthView", {
-  "monthTitleFormatText": "__MMMM yyyy__",
-  "dayTitleFormatText": "__ddd MMM d, yyyy__",
-  "startTimeFormatText": "__h:mm__",
+  "monthTitleFormatText": "MMMM yyyy",
+  "dayTitleFormatText": "ddd MMM d, yyyy",
+  "startTimeFormatText": "h:mm",
   "titleText": "__Calendar__",
   "todayText": "__Today__",
   "dayText": "__Day__",
@@ -207,10 +231,10 @@ localize("Mobile.SalesLogix.Views.Calendar.MonthView", {
 });
 
 localize("Mobile.SalesLogix.Views.Calendar.WeekView", {
-  "weekTitleFormatText": "__MMM d, yyyy__",
-  "dayHeaderLeftFormatText": "__dddd__",
-  "dayHeaderRightFormatText": "__MMM d, yyyy__",
-  "startTimeFormatText": "__h:mm__",
+  "weekTitleFormatText": "MMM d, yyyy",
+  "dayHeaderLeftFormatText": "dddd",
+  "dayHeaderRightFormatText": "MMM d, yyyy",
+  "startTimeFormatText": "h:mm",
   "titleText": "__Calendar__",
   "todayText": "__Today__",
   "dayText": "__Day__",
@@ -223,7 +247,7 @@ localize("Mobile.SalesLogix.Views.Calendar.WeekView", {
 });
 
 localize("Mobile.SalesLogix.Views.ErrorLog.Detail", {
-  "errorDateFormatText": "__MM/dd/yyyy hh:mm tt__",
+  "errorDateFormatText": "MM/dd/yyyy hh:mm tt",
   "titleText": "__Error Log__",
   "detailsText": "__Details__",
   "errorDateText": "__date__",
@@ -238,13 +262,13 @@ localize("Mobile.SalesLogix.Views.ErrorLog.Detail", {
 });
 
 localize("Mobile.SalesLogix.Views.ErrorLog.List", {
-  "errorDateFormatText": "__MM/dd/yyyy hh:mm tt__",
+  "errorDateFormatText": "MM/dd/yyyy hh:mm tt",
   "titleText": "__Error Logs__"
 });
 
 localize("Mobile.SalesLogix.Views.Event.Detail", {
-  "startDateFormatText": "__M/d/yyyy h:mm:ss tt__",
-  "endDateFormatText": "__M/d/yyyy h:mm:ss tt__",
+  "startDateFormatText": "M/d/yyyy h:mm:ss tt",
+  "endDateFormatText": "M/d/yyyy h:mm:ss tt",
   "eventTypeText": {
     "atToDo": "__To-Do__",
     "atPhoneCall": "__Phone Call__",
@@ -262,13 +286,13 @@ localize("Mobile.SalesLogix.Views.Event.Detail", {
 });
 
 localize("Mobile.SalesLogix.Views.Event.List", {
-  "eventDateFormatText": "__M/d/yyyy__",
+  "eventDateFormatText": "M/d/yyyy",
   "titleText": "__Events__",
   "eventText": "__Event__"
 });
 
 localize("Mobile.SalesLogix.Views.History.Detail", {
-  "dateFormatText": "__M/d/yyyy h:mm:ss tt__",
+  "dateFormatText": "M/d/yyyy h:mm:ss tt",
   "categoryText": "__category__",
   "completedText": "__completed__",
   "durationText": "__duration__",
@@ -289,6 +313,8 @@ localize("Mobile.SalesLogix.Views.History.Detail", {
   "ticketNumberText": "__ticket__",
   "moreDetailsText": "__More Details__",
   "relatedItemsText": "__Related Items__",
+  "relatedAttachmentText": "__Attachments__",
+  "relatedAttachmentTitleText": "__History Attachments__",
   "modifiedText": "__modified__",
   "typeText": "__type__",
   "activityTypeText": {
@@ -303,7 +329,7 @@ localize("Mobile.SalesLogix.Views.History.Detail", {
 });
 
 localize("Mobile.SalesLogix.Views.History.Edit", {
-  "startingFormatText": "__M/d/yyyy h:mm tt__",
+  "startingFormatText": "M/d/yyyy h:mm tt",
   "accountText": "__account__",
   "noteDescriptionTitleText": "__Note Description__",
   "contactText": "__contact__",
@@ -323,8 +349,8 @@ localize("Mobile.SalesLogix.Views.History.Edit", {
 });
 
 localize("Mobile.SalesLogix.Views.History.List", {
-  "hourMinuteFormatText": "__h:mm__",
-  "dateFormatText": "__M/d/yy__",
+  "hourMinuteFormatText": "h:mm",
+  "dateFormatText": "M/d/yy",
   "activityTypeText": {
     "atToDo": "__To-Do__",
     "atPhoneCall": "__Phone Call__",
@@ -348,7 +374,7 @@ localize("Mobile.SalesLogix.Views.History.List", {
 });
 
 localize("Mobile.SalesLogix.Views.Opportunity.Detail", {
-  "exchangeRateDateFormatText": "__M/d/yyyy h:mm tt__",
+  "exchangeRateDateFormatText": "M/d/yyyy h:mm tt",
   "accountText": "__acct__",
   "acctMgrText": "__acct mgr__",
   "estCloseText": "__est close__",
@@ -370,6 +396,8 @@ localize("Mobile.SalesLogix.Views.Opportunity.Detail", {
   "relatedItemsText": "__Related Items__",
   "relatedNotesText": "__Notes__",
   "relatedProductsText": "__Products__",
+  "relatedAttachmentText": "__Attachments__",
+  "relatedAttachmentTitleText": "__Opportunity Attachments__",
   "resellerText": "__reseller__",
   "statusText": "__status__",
   "titleText": "__Opportunity__",
@@ -385,7 +413,7 @@ localize("Mobile.SalesLogix.Views.Opportunity.Detail", {
 });
 
 localize("Mobile.SalesLogix.Views.Opportunity.Edit", {
-  "exchangeRateDateFormatText": "__M/d/yyyy h:mm tt__",
+  "exchangeRateDateFormatText": "M/d/yyyy h:mm tt",
   "accountText": "__acct__",
   "acctMgrText": "__acct mgr__",
   "estCloseText": "__est close__",
@@ -410,7 +438,7 @@ localize("Mobile.SalesLogix.Views.Opportunity.Edit", {
 });
 
 localize("Mobile.SalesLogix.Views.TicketActivity.Edit", {
-  "startingFormatText": "__M/d/yyyy h:mm tt__",
+  "startingFormatText": "M/d/yyyy h:mm tt",
   "titleText": "__Edit Ticket Activity__",
   "activityTypeText": "__type__",
   "activityTypeTitleText": "__Type__",
@@ -423,7 +451,7 @@ localize("Mobile.SalesLogix.Views.TicketActivity.Edit", {
 });
 
 localize("Mobile.SalesLogix.Views.TicketActivity.List", {
-  "startDateFormatText": "__MM/dd/yyyy h:mmtt__",
+  "startDateFormatText": "MM/dd/yyyy h:mmtt",
   "titleText": "__Ticket Activities__"
 });
 
@@ -527,6 +555,17 @@ localize("Sage.Platform.Mobile.View", {
   "titleText": "__Generic View__"
 });
 
+localize("Sage.Platform.Mobile.Views.FileSelect", {
+  "titleText": "__File Select__",
+  "addFileText": "__Click or Tap here to add a file.__",
+  "okText": "__Upload__",
+  "cancelText": "__Cancel__",
+  "selectFileText": "__Select file__",
+  "loadingText": "__Uploading...__",
+  "descriptionText": "__description__",
+  "bytesText": "__bytes__"
+});
+
 localize("Sage.Platform.Mobile.Views.Signature", {
   "titleText": "__Signature__",
   "clearCanvasText": "__Erase__",
@@ -536,6 +575,10 @@ localize("Sage.Platform.Mobile.Views.Signature", {
 localize("Mobile.SalesLogix.Action", {
   "calledText": "__Called ${0}__",
   "emailedText": "__E-mailed ${0}__"
+});
+
+localize("Mobile.SalesLogix.ApplicationModule", {
+  "searchText": "__Lookup__"
 });
 
 localize("Mobile.SalesLogix.Fields.AddressField", {
@@ -550,6 +593,13 @@ localize("Mobile.SalesLogix.Fields.NameField", {
 localize("Mobile.SalesLogix.Fields.RecurrencesField", {
   "titleText": "__Recurring__",
   "emptyText": ""
+});
+
+localize("Mobile.SalesLogix.FileManager", {
+  "unableToUploadText": "__Browser does not support HTML5 File API.__",
+  "unknownSizeText": "__unknown__",
+  "largeFileWarningText": "__Warning: This request exceed the size limit set by your administrator and fail to upload.__",
+  "percentCompleteText": "__Uploading, please wait...__"
 });
 
 localize("Mobile.SalesLogix.Recurrence", {
@@ -581,7 +631,7 @@ localize("Mobile.SalesLogix.Recurrence", {
 });
 
 localize("Mobile.SalesLogix.SpeedSearchWidget", {
-  "searchText": "__Search+__"
+  "searchText": "__SpeedSearch__"
 });
 
 localize("Mobile.SalesLogix.Validator", {
@@ -643,6 +693,8 @@ localize("Mobile.SalesLogix.Views.Account.Detail", {
   "relatedOpportunitiesText": "__Opportunities__",
   "relatedTicketsText": "__Tickets__",
   "relatedAddressesText": "__Addresses__",
+  "relatedAttachmentText": "__Attachments__",
+  "relatedAttachmentTitleText": "__Account Attachments__",
   "statusText": "__status__",
   "subTypeText": "__subtype__",
   "titleText": "__Account__",
@@ -796,6 +848,10 @@ localize("Mobile.SalesLogix.Views.AreaCategoryIssueLookup", {
   "titleText": "__Accounts__"
 });
 
+localize("Mobile.SalesLogix.Views.Attachment.MyAttachmentList", {
+  "titleText": "__My Attachments__"
+});
+
 localize("Mobile.SalesLogix.Views.Competitor.List", {
   "titleText": "__Competitors__"
 });
@@ -829,6 +885,8 @@ localize("Mobile.SalesLogix.Views.Contact.Detail", {
   "relatedOpportunitiesText": "__Opportunities__",
   "relatedTicketsText": "__Tickets__",
   "relatedAddressesText": "__Addresses__",
+  "relatedAttachmentText": "__Attachments__",
+  "relatedAttachmentTitleText": "__Contact Attachments__",
   "titleText": "__Contact__",
   "webText": "__web__",
   "workText": "__phone__",
@@ -894,12 +952,7 @@ localize("Mobile.SalesLogix.Views.ExchangeRateLookup", {
 });
 
 localize("Mobile.SalesLogix.Views.FooterToolbar", {
-  "copyrightText": "__&copy; 2013 Sage Software, Inc. All rights reserved.__",
-  "logOutConfirmText": "__Are you sure you want to log out?__",
-  "settingsText": "__Settings__",
-  "helpText": "__Help__",
-  "topText": "__Top__",
-  "logOutText": "__Log Out__"
+  "copyrightText": "__&copy; 2013 Sage Software, Inc. All rights reserved.__"
 });
 
 localize("Mobile.SalesLogix.Views.Help", {
@@ -938,6 +991,8 @@ localize("Mobile.SalesLogix.Views.Lead.Detail", {
   "relatedHistoriesText": "__Notes/History__",
   "relatedItemsText": "__Related Items__",
   "relatedNotesText": "__Notes__",
+  "relatedAttachmentText": "__Attachments__",
+  "relatedAttachmentTitleText": "__Lead Attachments__",
   "sicCodeText": "__sic code__",
   "titleText": "__Lead__",
   "tollFreeText": "__toll free__",
@@ -996,6 +1051,19 @@ localize("Mobile.SalesLogix.Views.Lead.List", {
 
 localize("Mobile.SalesLogix.Views.LeadSource.List", {
   "titleText": "__Lead Sources__"
+});
+
+localize("Mobile.SalesLogix.Views.LeftDrawer", {
+  "configureText": "__Configure Menu__",
+  "addAccountContactText": "__Add Account/Contact__",
+  "titleText": "__Main Menu__",
+  "actionsText": "__Quick Actions__",
+  "viewsText": "__Go To__",
+  "footerText": "__Other__",
+  "settingsText": "__Settings__",
+  "helpText": "__Help__",
+  "logOutText": "__Log Out__",
+  "logOutConfirmText": "__Are you sure you want to log out?__"
 });
 
 localize("Mobile.SalesLogix.Views.Login", {
@@ -1174,6 +1242,8 @@ localize("Mobile.SalesLogix.Views.Ticket.Detail", {
   "notesText": "__comments__",
   "phoneText": "__phone__",
   "actionsText": "__Quick Actions__",
+  "relatedAttachmentText": "__Attachments__",
+  "relatedAttachmentTitleText": "__Ticket Attachments__",
   "relatedActivitiesText": "__Activities__",
   "relatedItemsText": "__Related Items__",
   "resolutionText": "__resolution__",
