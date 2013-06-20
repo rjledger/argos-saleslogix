@@ -183,19 +183,21 @@ localize("Mobile.SalesLogix.Views.Attachment.AddAttachment", {
   "titleText": "__Add Attachments__"
 });
 
-localize("Mobile.SalesLogix.Views.Attachment.Detail", {
+localize("Mobile.SalesLogix.Views.Attachment.List", {
+  "attachmentDateFormatText": "ddd M/d/yy h:mm:tt",
+  "titleText": "__Attachments__"
+});
+
+localize("Mobile.SalesLogix.Views.Attachment.ViewAttachment", {
   "attachmentDateFormatText": "ddd M/d/yy h:mm:tt",
   "detailsText": "__Attachment Details__",
   "descriptionText": "__description__",
   "fileNameText": "__file name__",
   "attachDateText": "__attachment date__",
   "fileSizeText": "__file size__",
-  "userText": "__user__"
-});
-
-localize("Mobile.SalesLogix.Views.Attachment.List", {
-  "attachmentDateFormatText": "ddd M/d/yy h:mm:tt",
-  "titleText": "__Attachments__"
+  "userText": "__user__",
+  "attachmentNotSupportedText": "__The attachment type is not supported for viewing.__",
+  "downloadingText": "__Downloading attachment ...__"
 });
 
 localize("Mobile.SalesLogix.Views.Calendar.DayView", {
@@ -370,7 +372,8 @@ localize("Mobile.SalesLogix.Views.History.List", {
   "titleText": "__Notes/History__",
   "viewAccountActionText": "__Account__",
   "viewOpportunityActionText": "__Opp.__",
-  "viewContactActionText": "__Contact__"
+  "viewContactActionText": "__Contact__",
+  "regardingText": "__Regarding: __"
 });
 
 localize("Mobile.SalesLogix.Views.Opportunity.Detail", {
@@ -558,7 +561,7 @@ localize("Sage.Platform.Mobile.View", {
 localize("Sage.Platform.Mobile.Views.FileSelect", {
   "titleText": "__File Select__",
   "addFileText": "__Click or Tap here to add a file.__",
-  "okText": "__Upload__",
+  "uploadText": "__Upload__",
   "cancelText": "__Cancel__",
   "selectFileText": "__Select file__",
   "loadingText": "__Uploading...__",
@@ -596,9 +599,10 @@ localize("Mobile.SalesLogix.Fields.RecurrencesField", {
 });
 
 localize("Mobile.SalesLogix.FileManager", {
-  "unableToUploadText": "__Browser does not support HTML5 File API.__",
+  "unableToUploadText": "__This browser does not support HTML5 File API.__",
   "unknownSizeText": "__unknown__",
-  "largeFileWarningText": "__Warning: This request exceed the size limit set by your administrator and fail to upload.__",
+  "unknownErrorText": "__Warning: An error occured and the file failed to upload.__",
+  "largeFileWarningText": "__Warning: This request exceeds the size limit set by your administrator and failed to upload.__",
   "percentCompleteText": "__Uploading, please wait...__"
 });
 
@@ -740,7 +744,9 @@ localize("Mobile.SalesLogix.Views.Account.List", {
   "callMainActionText": "__Call Main__",
   "viewContactsActionText": "__Contacts__",
   "addNoteActionText": "__Add Note__",
-  "addActivityActionText": "__Add Activity__"
+  "addActivityActionText": "__Add Activity__",
+  "phoneAbbreviationText": "__Phone: __",
+  "faxAbbreviationText": "__Fax: __"
 });
 
 localize("Mobile.SalesLogix.Views.Activity.MyList", {
@@ -932,7 +938,9 @@ localize("Mobile.SalesLogix.Views.Contact.List", {
   "sendEmailActionText": "__Email__",
   "viewAccountActionText": "__Account__",
   "addNoteActionText": "__Add Note__",
-  "addActivityActionText": "__Add Activity__"
+  "addActivityActionText": "__Add Activity__",
+  "phoneAbbreviationText": "__Work: __",
+  "mobileAbbreviationText": "__Mobile: __"
 });
 
 localize("Mobile.SalesLogix.Views.Contract.List", {
@@ -1046,7 +1054,9 @@ localize("Mobile.SalesLogix.Views.Lead.List", {
   "callMainActionText": "__Call Main__",
   "sendEmailActionText": "__Email__",
   "addNoteActionText": "__Add Note__",
-  "addActivityActionText": "__Add Activity__"
+  "addActivityActionText": "__Add Activity__",
+  "phoneAbbreviationText": "__Work: __",
+  "tollFreeAbbreviationText": "__Toll Free: __"
 });
 
 localize("Mobile.SalesLogix.Views.LeadSource.List", {
@@ -1067,11 +1077,11 @@ localize("Mobile.SalesLogix.Views.LeftDrawer", {
 });
 
 localize("Mobile.SalesLogix.Views.Login", {
-  "copyrightText": "__&copy; 2013 Sage Software, Inc. All rights reserved.__",
+  "copyrightText": "__&copy; 2013 Saleslogix, NA, LLC. All rights reserved.__",
   "logOnText": "__Log On__",
   "passText": "__password__",
   "rememberText": "__remember__",
-  "titleText": "__Sage SalesLogix__",
+  "titleText": "__SalesLogix__",
   "userText": "__user name__",
   "invalidUserText": "__The user name or password is invalid.__",
   "missingUserText": "__The user record was not found.__",
@@ -1221,7 +1231,7 @@ localize("Mobile.SalesLogix.Views.Settings", {
 });
 
 localize("Mobile.SalesLogix.Views.SpeedSearchList", {
-  "titleText": "__Search Results__"
+  "titleText": "__SpeedSearch__"
 });
 
 localize("Mobile.SalesLogix.Views.TextEdit", {
@@ -1301,7 +1311,9 @@ localize("Mobile.SalesLogix.Views.Ticket.List", {
   "viewAccountActionText": "__Account__",
   "viewContactActionText": "__Contact__",
   "addNoteActionText": "__Add Note__",
-  "addActivityActionText": "__Add Activity__"
+  "addActivityActionText": "__Add Activity__",
+  "assignedToText": "__Assigned To: __",
+  "urgencyText": "__Urgency: __"
 });
 
 localize("Mobile.SalesLogix.Views.Ticket.UrgencyLookup", {
