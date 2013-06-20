@@ -1,4 +1,8 @@
-.viewContainer > .list,
+.viewContainer > .list
+{
+    background-color: #e6e6e6;
+}
+
 .viewContainer > .panel
 {
     background-color: #fff;
@@ -172,6 +176,7 @@ h4
     font-weight: normal;
     line-height: 1.25em;
     margin-top: 0;
+    font-style: italic;
 }
 
 .note-text-more
@@ -281,7 +286,6 @@ h4
 #configure > .list-content > li.list-item-selected
 {
     color: #000;
-    background: none;
 }
 
 #configure > .list-content > li.list-item-selected h3 > .icon
@@ -996,7 +1000,7 @@ body.transition > .viewContainer > .footer-toolbar
 #calendar_weeklist,
 #calendar_yearlist,
 #calendar_daylist {
-    background-color: #fff;
+    background-color: #e6e6e6;
 }
 
 #calendar_monthlist .nav-bar,
@@ -1399,3 +1403,67 @@ td.entry-table-description {
 {
     display: inline;
 }
+.attachment-viewer-content
+{
+    margin: 12px 0 !important;
+    width: 100% !important; 
+    height: 95% !important;
+}
+.attachment-viewer-label > label {
+    color: #0079A7 !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    margin-left: 10px !important;
+}
+.attachment-viewer-label > button {
+    margin-left: 10px !important;
+    float:left !important;
+}
+.attachment-viewer-area 
+{
+    moz-box-sizing: border-box !important;
+    border: 0px solid #000000 !important;
+    border-radius: 3px 3px 3px 3px !important;
+    margin: 10px !important;
+    padding:5px !important;
+    width: auto !important; 
+    height:95% !important;
+}
+
+.attachment-viewer-area > iframe
+{
+    border: 1px solid #000000 !important;
+    width: 100% !important; 
+    height:100% !important;
+	-moz-transform-origin: top left;
+    -webkit-transform-origin: top left;
+    -o-transform-origin: top left;
+    -ms-transform-origin: top left;
+    transform-origin: top left;
+}
+.attachment-viewer-area > table
+{
+    border-color: #e6e6e6;
+    border-radius: 10px 10px 10px 10px;
+    border-style: solid;
+    border-width: 1px;
+    width: 100% !important; 
+    height:100% !important;
+    background-color: #e6e6e6;
+}
+
+.attachment-viewer-area > table> tbody > tr > td
+{
+    padding: 4px;
+}
+
+.attachment-viewer-area > table> tbody > tr > td > img
+{
+    border: 0px solid #000000;
+}
+.attachment-viewer-not-supported
+{
+    margin: 10px !important;
+
+}
+

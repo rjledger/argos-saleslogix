@@ -30,20 +30,23 @@ define('Mobile/SalesLogix/FileManager', [
     sniff
 ) {
     return declare('Mobile.SalesLogix.FileManager', null, {
-        unableToUploadText: 'Browser does not support HTML5 File API.',
+        unableToUploadText: 'This browser does not support HTML5 File API.',
         unknownSizeText: 'unknown',
-        largeFileWarningText: 'Warning: This request exceed the size limit set by your administrator and fail to upload.',
+        unknownErrorText: 'Warning: An error occured and the file failed to upload.',
+        largeFileWarningText: 'Warning: This request exceeds the size limit set by your administrator and failed to upload.',
         largeFileWarningTitle: 'Warning',
         percentCompleteText: 'Uploading, please wait...',
         fileUploadOptions: { maxFileSize: 4000000 },
         _store: false,
         _totalProgress: 0,
-        _files: [],
+        _files: null,
         _fileCount: 0,
         _filesUploadedCount: 0,
         _isUploading: false,
 
         constructor: function() {
+            this._files = [];
+            this.fileUploadOptions.maxFileSize = App.maxUploadFileSize;
         },
         isHTML5Supported:function(){
             var results = has('html5-file-api');
@@ -74,15 +77,20 @@ define('Mobile/SalesLogix/FileManager', [
         },
         uploadFileHTML5: function(file, url, progress, complete, error, scope, asPut) {
             if (!this.isFileSizeAllowed([file])) {
+                this._onUnableToUploadError(this.largeFileWarningText, error);
                 return;
             }
             if (this.isHTML5Supported()) {
                 this._uploadFileHTML5_asBinary(file, url, progress, complete, error, scope, asPut);
             } else {
-                this._showUnableToUploadError();
+                this._onUnableToUploadError(this.unableToUploadText, error);
             }
         },
         _uploadFileHTML5_asBinary: function(file, url, progress, complete, error, scope, asPut) {
+            window.BlobBuilder = window.BlobBuilder || 
+                         window.WebKitBlobBuilder || 
+                         window.MozBlobBuilder || 
+                         window.MSBlobBuilder;
             if (!url) {
                 //assume Attachment SData url
                 url = 'slxdata.ashx/slx/system/-/attachments/file';// TODO: Remove this assumption from SDK
@@ -100,31 +108,41 @@ define('Mobile/SalesLogix/FileManager', [
 
             reader = new FileReader();
             reader.onload = lang.hitch(this, function(evt) {
-                var binary, boundary, dashdash, crlf, bb;
+                var binary, boundary, dashdash, crlf, bb, unknownErrorText, usingBlobBuilder, blobReader, blobData;
+                unknownErrorText = this.unknownErrorText;
+                blobReader = new FileReader();// read the blob as an ArrayBuffer to work around this android issue: https://code.google.com/p/android/issues/detail?id=39882
+                
+                try {
+                    new Blob();// This will throw an exception if it is no supported (android)
+                    bb = [];
+                } catch(e) {
+                    bb = new window.BlobBuilder();
+                    usingBlobBuilder = true;
+                }
 
-                bb = [];
                 binary = evt.target.result;
                 boundary = "---------------------------" + (new Date()).getTime();
                 dashdash = '--';
                 crlf = '\r\n';
 
-                bb.push(dashdash + boundary + crlf);
-                bb.push('Content-Disposition: attachment; ');
-                bb.push('name="file_"; ');
-                bb.push('filename*="' + encodeURI(file.name) + '" ');
-                bb.push(crlf);
-                bb.push('Content-Type: ' + file.type);
-                bb.push(crlf + crlf);
-                bb.push(binary);
-                bb.push(crlf);
-                bb.push(dashdash + boundary + dashdash + crlf);
+                this._append(bb, dashdash + boundary + crlf);
+                this._append(bb, 'Content-Disposition: attachment; ');
+                this._append(bb, 'name="file_"; ');
+                this._append(bb, 'filename*="' + encodeURI(file.name) + '" ');
+                this._append(bb, crlf);
+                this._append(bb, 'Content-Type: ' + file.type);
+                this._append(bb, crlf + crlf);
+                this._append(bb, binary);
+                this._append(bb, crlf);
+                this._append(bb, dashdash + boundary + dashdash + crlf);
 
                 if (complete) {
                     request.onreadystatechange = function() {
                         if (request.readyState === 4) {
                             if (Math.floor(request.status / 100) !== 2) {
                                 if (error) {
-                                    error.call(scope || this, request);
+                                    error.call(scope || this, unknownErrorText);
+                                    console.warn(unknownErrorText + " "+ request.responseText);
                                 }
                             } else {
                                 complete.call(scope || this, request);
@@ -138,14 +156,42 @@ define('Mobile/SalesLogix/FileManager', [
                         progress.call(scope || this, e);
                     });
                 }
+
                 request.setRequestHeader('Content-Type', 'multipart/attachment; boundary=' + boundary);
-                request.send(new Blob(bb));
+
+                if (usingBlobBuilder) {
+                    blobData = bb.getBlob(file.type);
+                } else {
+                    blobData = new Blob(bb);
+                }
+
+                // Read the blob back as an ArrayBuffer to work around this android issue:
+                // https://code.google.com/p/android/issues/detail?id=39882
+                blobReader.onload = function(e) {
+                    request.send(e.target.result);
+                }
+
+                blobReader.readAsArrayBuffer(blobData);
             });
 
             reader.readAsArrayBuffer(file);
         },
-        _showUnableToUploadError: function() {
-            window.alert(this.unableToUploadText);
+        _append: function(arrayOrBlobBuilder, data) {
+            if (arrayOrBlobBuilder && arrayOrBlobBuilder.constructor === Array) {
+                arrayOrBlobBuilder.push(data);
+            } else {
+                arrayOrBlobBuilder.append(data);
+            }
+        },
+        _onUnableToUploadError: function(msg, onError) {
+            if (!msg) {
+                msg = this.unableToUploadText
+            }
+            if (onError) {
+                onError([msg])
+            } else {
+                console.warn([msg]);
+            }
         },
         formatFileSize: function(size) {
             size = parseInt(size, 10);
@@ -190,7 +236,7 @@ define('Mobile/SalesLogix/FileManager', [
 
                 responseInfo = {
                     request: this,
-                    responseTye: responseType,
+                    responseType: responseType,
                     response: this.response,
                     contentType: contentType,
                     fileName: fileName
